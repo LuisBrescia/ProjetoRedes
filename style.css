@@ -21,7 +21,20 @@ body {
   min-height: 100vh;
 }
 
+a {
+  text-decoration: none !important;; 
+}
+
 main {
   min-height: 100vh;
 }
 
+aside a {
+  color: black !important;
+  padding: 10px 125px 10px 25px;
+}
+
+
+aside a:hover {
+  background-color: aliceblue;
+}

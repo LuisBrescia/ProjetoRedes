@@ -10,12 +10,12 @@
   <title>Redes</title>
 </head>
 
-<body>
+<body class="">
 
-  <nav class="d-flex px-3 container-fluid bg-white py-3 border-bottom">
+  <nav class="d-flex px-3 container-fluid bg-white py-3 border-bottom sticky-top">
     <!-- * Lado esquerdo -->
     <div class="text-dark d-flex align-items-center w-50">
-      <i class="border bi-router fs-3 px-3 py-2 rounded-5 shadow-sm"></i>
+      <i class="border bi-router fs-4 px-3 py-2 rounded-5 shadow-sm"></i>
       <span class="fs-5 text-nowrap">&nbsp; RDC - Material Extra</span>
     </div>
 
@@ -26,44 +26,49 @@
         <input type="text" class="form-control shadow-none" placeholder="O que deseja procurar">
         <span class="input-group-text bi-search btn btn-dark"></span>
       </div>
-
     </div>
   </nav>
 
   <main class="d-flex">
 
-    <aside class="col-auto border-end p-3 overflow-y-scroll pe-5">
-      <span>Aqui estarão os tópicos</span>
+    <aside class="col-auto position-sticky">
+      <div class="d-flex flex-column">
+        <a class="mt-3" href="#">Modelo OSI</a>
+        <a href="#">Fibra Óptica</a>
+        <a href="#">Tópico 3</a>
+        <a href="#">Tópico 4</a>
+        <a href="#">Tópico 5</a>
+      </div>
     </aside>
 
     <!-- * Conteúdo -->
-    <section class="col p-3">
+    <section class="col p-3 border-start"> 
 
       <!-- * Cards com dinâmica interativa -->
       <div class="container d-flex gap-3 justify-content-around mb-3">
 
-        <div class="card col">
+        <div class="border shadow-sm card col">
           <div class="card-body">
             <h5 class="card-title">Caça-Palavras</h5>
             <p class="card-text">Lucas Gabriel</p>
           </div>
         </div>
 
-        <div class="card col">
+        <div class="border shadow-sm card col">
           <div class="card-body">
             <h5 class="card-title">Quiz</h5>
             <p class="card-text">Letícia</p>
           </div>
         </div>
 
-        <div class="card col">
+        <div class="border shadow-sm card col">
           <div class="card-body">
             <h5 class="card-title">Jogo da memória</h5>
             <p class="card-text">Vitor Schneider</p>
           </div>
         </div>
 
-        <div class="card col">
+        <div class="border shadow-sm card col">
           <div class="card-body">
             <h5 class="card-title">Questionário</h5>
             <p class="card-text">Luís Brescia</p>
