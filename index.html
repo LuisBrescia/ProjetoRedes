@@ -11,7 +11,7 @@
 
 <body>
 
-  <nav class="Topography d-flex px-3 container-fluid bg-white py-3 border-bottom sticky-top bg-dark justify-content-between">
+  <nav class="Topography d-flex px-3 container-fluid bg-white py-3 border-bottom sticky-top bg-dark justify-content-center justify-content-md-between">
     <!-- * Lado esquerdo -->
     <div class="text-dark d-flex align-items-center">
       <i class="logo bi-router-fill fs-5 px-3 py-2 rounded-5"></i>
@@ -30,7 +30,7 @@
     <!-- * Lado direito -->
     <div class="d-none d-md-flex align-items-center justify-content-end" style="justify-self: end;">
       <div class="input-group">
-        <input type="text" class="form-control shadow-sm" placeholder="O que deseja estudar">
+        <input type="text" class="form-control shadow-sm" placeholder="Pesquisar Tópico">
         <button class="input-group-text bi-search btn-1 border shadow-sm"></button>
       </div>
     </div>
@@ -38,7 +38,7 @@
 
   <main class="d-flex">
 
-    <aside class="col-3 col-xxl-2 position-sticky bg-white">
+    <aside class="d-none d-md-block col-3 col-xxl-2 position-sticky bg-white">
       <div id="topico" class="d-flex flex-column">
         <a class="mt-3" href="#">Modelo OSI</a>
         <a href="#">Fibra Óptica</a>
@@ -51,30 +51,30 @@
     <!-- * Conteúdo -->
     <section class="col p-3 border-start bg-white">
       <!-- * Cards com dinâmica interativa -->
-      <div id="interativo" class="container d-flex gap-3 justify-content-around mb-3">
+      <div id="interativo" class="container d-flex gap-md-3 justify-content-around mb-3 flex-wrap">
 
-        <div class="Topography border shadow-sm card col">
+        <div class="Topography border shadow-sm card col-6 col-md">
           <div class="card-body">
             <h5 class="card-title">Caça-Palavras</h5>
             <p class="card-text">Lucas Gabriel</p>
           </div>
         </div>
 
-        <div class="Topography border shadow-sm card col">
+        <div class="Topography border shadow-sm card col-6 col-md">
           <div class="card-body">
             <h5 class="card-title">Quiz</h5>
             <p class="card-text">Letícia</p>
           </div>
         </div>
 
-        <div class="Topography border shadow-sm card col">
+        <div class="Topography border shadow-sm card col-6 col-md">
           <div class="card-body">
             <h5 class="card-title">Jogo da memória</h5>
             <p class="card-text">Vitor Schneider</p>
           </div>
         </div>
 
-        <div  class="Topography border shadow-sm card col">
+        <div  class="Topography border shadow-sm card col-6 col-md">
           <div class="card-body">
             <h5 class="card-title">Questionário</h5>
             <p class="card-text">Luís Brescia</p>
