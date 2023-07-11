@@ -10,28 +10,35 @@
   <title>Redes</title>
 </head>
 
-<body class="">
+<body>
 
-  <nav class="d-flex px-3 container-fluid bg-white py-3 border-bottom sticky-top">
+  <nav class="d-flex px-3 container-fluid bg-white py-3 border-bottom sticky-top bg-dark justify-content-between">
     <!-- * Lado esquerdo -->
-    <div class="text-dark d-flex align-items-center w-50">
-      <i class="border bi-router fs-4 px-3 py-2 rounded-5 shadow-sm"></i>
-      <span class="fs-5 text-nowrap">&nbsp; RDC - Material Extra</span>
+    <div class="text-dark d-flex align-items-center">
+      <i class="logo bi-router-fill fs-5 px-3 py-2 rounded-5"></i>
+      <span class="fs-6 text-nowrap"><strong>RDC</strong> - Material Extra</span>
+
+      <span class="mx-3 vl border-start my-0 p-0"></span>
+
+      <select name="unidade" class="form-select shadow-sm" style="width: 10em">
+        <option value="1">Unidade 1</option>
+        <option value="2">Unidade 2</option>
+      </select>
     </div>
 
     <!-- * Lado direito -->
-    <div class="w-50 d-flex align-items-center justify-content-end">
+    <div class="d-flex align-items-center justify-content-end" style="justify-self: end;">
 
-      <div class="input-group w-50">
-        <input type="text" class="form-control shadow-none" placeholder="O que deseja procurar">
-        <span class="input-group-text bi-search btn btn-dark"></span>
+      <div class="input-group">
+        <input type="text" class="form-control shadow-sm" placeholder="O que deseja procurar">
+        <span class="input-group-text bi-search btn btn-primary shadow-sm"></span>
       </div>
     </div>
   </nav>
 
   <main class="d-flex">
 
-    <aside class="col-auto position-sticky">
+    <aside class="col-auto position-sticky bg-white">
       <div class="d-flex flex-column">
         <a class="mt-3" href="#">Modelo OSI</a>
         <a href="#">Fibra Óptica</a>
@@ -42,7 +49,7 @@
     </aside>
 
     <!-- * Conteúdo -->
-    <section class="col p-3 border-start"> 
+    <section class="col p-3 border-start bg-white"> 
 
       <!-- * Cards com dinâmica interativa -->
       <div class="container d-flex gap-3 justify-content-around mb-3">
