@@ -3,16 +3,15 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="icon" type="image/svg+xml" href="/icone.svg"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script type="module" src="./bootstrap.js"></script>
-  <title>Redes</title>
+  <title>RDC - Material Extra</title>
 </head>
 
 <body>
 
-  <nav
-    class="Topography d-flex px-3 container-fluid bg-white py-3 border-bottom sticky-top bg-dark justify-content-between">
+  <nav class="Topography d-flex px-3 container-fluid bg-white py-3 border-bottom sticky-top bg-dark justify-content-between">
     <!-- * Lado esquerdo -->
     <div class="text-dark d-flex align-items-center">
       <i class="logo bi-router-fill fs-5 px-3 py-2 rounded-5"></i>
@@ -29,19 +28,18 @@
     </div>
 
     <!-- * Lado direito -->
-    <div class="d-flex align-items-center justify-content-end" style="justify-self: end;">
-
+    <div class="d-none d-md-flex align-items-center justify-content-end" style="justify-self: end;">
       <div class="input-group">
         <input type="text" class="form-control shadow-sm" placeholder="O que deseja estudar">
-        <span class="input-group-text bi-search btn btn-primary shadow-sm"></span>
+        <button class="input-group-text bi-search btn-1 border shadow-sm"></button>
       </div>
     </div>
   </nav>
 
   <main class="d-flex">
 
-    <aside class="col-auto position-sticky bg-white">
-      <div class="d-flex flex-column">
+    <aside class="col-3 col-xxl-2 position-sticky bg-white">
+      <div id="topico" class="d-flex flex-column">
         <a class="mt-3" href="#">Modelo OSI</a>
         <a href="#">Fibra Óptica</a>
         <a href="#">Tópico 3</a>
@@ -52,7 +50,6 @@
 
     <!-- * Conteúdo -->
     <section class="col p-3 border-start bg-white">
-
       <!-- * Cards com dinâmica interativa -->
       <div id="interativo" class="container d-flex gap-3 justify-content-around mb-3">
 
@@ -77,7 +74,7 @@
           </div>
         </div>
 
-        <div id="teste" class="Topography border shadow-sm card col">
+        <div  class="Topography border shadow-sm card col">
           <div class="card-body">
             <h5 class="card-title">Questionário</h5>
             <p class="card-text">Luís Brescia</p>

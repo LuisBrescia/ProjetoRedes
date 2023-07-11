@@ -20,4 +20,6 @@ $(document).ready(function () {
 
 function carregaConteudo(unidade) {
     $('#conteudo').load('/unidade'+ unidade +'.html #unidade'+ unidade +'_conteudo');
+    $('#topico').load('/unidade'+ unidade +'.html #unidade'+ unidade +'_topicos');
+    // $('#interativo').load('/unidade'+ unidade +'.html #unidade'+ unidade +'_interativo');
 }
