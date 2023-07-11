@@ -1,45 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script type="module" src="./main.js"></script>
-    <link rel="stylesheet" href="./style.css">
-    <title>Redes</title>
-  </head>
-  
-  <body>
 
-    <nav class="d-flex px-3 container-fluid bg-white py-3 border-bottom">
-      <!-- * Lado esquerdo -->
-      <div class="text-dark d-flex align-items-center w-50">
-        <i class="bi-router fs-3 px-3 py-2 rounded-5 shadow-sm"></i>
-        <span class="fs-5">&nbsp; RDC - Material Extra</span>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script type="module" src="./main.js"></script>
+  <link rel="stylesheet" href="./style.css">
+  <title>Redes</title>
+</head>
+
+<body>
+
+  <nav class="d-flex px-3 container-fluid bg-white py-3 border-bottom">
+    <!-- * Lado esquerdo -->
+    <div class="text-dark d-flex align-items-center w-50">
+      <i class="border bi-router fs-3 px-3 py-2 rounded-5 shadow-sm"></i>
+      <span class="fs-5 text-nowrap">&nbsp; RDC - Material Extra</span>
+    </div>
+
+    <!-- * Lado direito -->
+    <div class="w-50 d-flex align-items-center justify-content-end">
+
+      <div class="input-group w-50">
+        <input type="text" class="form-control shadow-none" placeholder="O que deseja procurar">
+        <span class="input-group-text bi-search btn btn-dark"></span>
       </div>
 
-      <!-- * Lado direito -->
-      <div class="w-50 d-flex align-items-center justify-content-end">
+    </div>
+  </nav>
 
-        <div class="input-group w-50">
-          <input type="text" class="form-control shadow-none" placeholder="O que deseja procurar">
-          <span class="input-group-text bi-search btn btn-dark"></span>
+  <main class="d-flex">
+
+    <aside class="col-auto border-end p-3 overflow-y-scroll pe-5">
+      <span>Aqui estarão os tópicos</span>
+    </aside>
+
+    <!-- * Conteúdo -->
+    <section class="col p-3">
+
+      <!-- * Cards com dinâmica interativa -->
+      <div class="container d-flex gap-3 justify-content-around mb-3">
+
+        <div class="card col">
+          <div class="card-body">
+            <h5 class="card-title">Caça-Palavras</h5>
+            <p class="card-text">Lucas Gabriel</p>
+          </div>
         </div>
 
+        <div class="card col">
+          <div class="card-body">
+            <h5 class="card-title">Quiz</h5>
+            <p class="card-text">Letícia</p>
+          </div>
+        </div>
+
+        <div class="card col">
+          <div class="card-body">
+            <h5 class="card-title">Jogo da memória</h5>
+            <p class="card-text">Vitor Schneider</p>
+          </div>
+        </div>
+
+        <div class="card col">
+          <div class="card-body">
+            <h5 class="card-title">Questionário</h5>
+            <p class="card-text">Luís Brescia</p>
+          </div>
+        </div>
       </div>
-    </nav>
 
-    <main class="d-flex">
+      <!-- * Aqui estará o conteudo -->
+      <div class="container">
+        <div class="fs-3 fw-bolder">Modelo OSI</div>
+        <span>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel dicta eveniet voluptatum, laudantium autem accusantium eligendi facere expedita reiciendis, ex sed sit quo repudiandae recusandae eaque optio eum, rerum vitae?
+        </span>
+        <div class="fs-3 fw-bolder mt-3">Modelo OSI</div>
+        <span>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel dicta eveniet voluptatum, laudantium autem accusantium eligendi facere expedita reiciendis, ex sed sit quo repudiandae recusandae eaque optio eum, rerum vitae?
+        </span>
+      </div>
 
-      <aside class="col-auto border-end p-3 overflow-y-scroll pe-5">
-        <span>Aqui estarão os tópicos</span>
-      </aside>
+    </section>
 
-      <section class="col p-3">
-        A
-      </section>
+  </main>
 
-    </main>
+</body>
 
-  </body>
 </html>
