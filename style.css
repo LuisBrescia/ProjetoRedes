@@ -27,7 +27,7 @@ main {
 
 aside a {
   color: black !important;
-  padding: 10px 125px 10px 25px;
+  padding: 10px 0 10px 25px;
 }
 
 aside a:hover {
