@@ -1,0 +1,49 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	height: 100vh;
+	width: 100%;
+}
+
+#PALAVRA1{
+	position: fixed;
+	margin-left: 31vw;
+	margin-top: 13vh;
+}
+
+#PALAVRA1 > #d1{
+	margin-bottom: 0vh;
+}
+
+#PALAVRA2{
+	position: fixed;
+	margin-left: 25vw;
+	margin-top: 25vh;
+}
+#PALAVRA2 > div{
+	float: left;
+	display:inline;
+}
+
+section > div{
+	border: solid 1px black;
+	max-width: 3vw;
+	min-width: 3vw;
+	max-height: 4vh;
+	min-height: 4vh;
+	text-align: center;
+	vertical-align: center;
+}
+
+section > p{
+	max-width: 3vw;
+	min-width: 3vw;
+	max-height: 4vh;
+	min-height: 4vh;
+	text-align: center;
+	vertical-align: center;
+}
