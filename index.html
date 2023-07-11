@@ -4,10 +4,42 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <script type="module" src="./main.js"></script>
+    <link rel="stylesheet" href="./style.css">
+    <title>Redes</title>
   </head>
+  
   <body>
-    <div id="app"></div>
-    <script type="module" src="/main.js"></script>
+
+    <nav class="d-flex px-3 container-fluid bg-white py-3 border-bottom">
+      <!-- * Lado esquerdo -->
+      <div class="text-dark d-flex align-items-center w-50">
+        <i class="bi-router fs-3 px-3 py-2 rounded-5 shadow-sm"></i>
+        <span class="fs-5">&nbsp; RDC - Material Extra</span>
+      </div>
+
+      <!-- * Lado direito -->
+      <div class="w-50 d-flex align-items-center justify-content-end">
+
+        <div class="input-group w-50">
+          <input type="text" class="form-control shadow-none" placeholder="O que deseja procurar">
+          <span class="input-group-text bi-search btn btn-dark"></span>
+        </div>
+
+      </div>
+    </nav>
+
+    <main class="d-flex">
+
+      <aside class="col-auto border-end p-3 overflow-y-scroll pe-5">
+        <span>Aqui estarão os tópicos</span>
+      </aside>
+
+      <section class="col p-3">
+        A
+      </section>
+
+    </main>
+
   </body>
 </html>
