@@ -26,7 +26,10 @@ $(document).ready(function () {
             if (tema == 'dark') {
                 console.log('tema dark')
                 $('.card').toggleClass('bg-dark bg-white text-white text-dark');
+                $('.card').attr('data-bs-theme', 'dark');
             }
+
+            $('.card').removeClass('d-none');
 
             $('.card').click(function () {
                 console.log("algo");
@@ -60,7 +63,10 @@ $(document).ready(function () {
         if (tema == 'dark') {
             console.log('tema dark')
             $('.card').toggleClass('bg-dark bg-white text-white text-dark');
+            $('.card').attr('data-bs-theme', 'dark');
         }
+
+        $('.card').removeClass('d-none');
     
         $('.card').click(function () {
             console.log("algo");
@@ -75,7 +81,7 @@ $(document).ready(function () {
 })
 
 function alteraTema(tema) {
-    $('nav, aside, .modal-content, #liveToast, .toast-header').attr('data-bs-theme', tema);
+    $('nav, aside, .modal-content, #liveToast, .toast-header, .card').attr('data-bs-theme', tema);
     $('nav button, .modal-footer button').toggleClass('btn-1 btn-2');
     $('nav').toggleClass('bg-white bg-dark');
     $('.toast-header').toggleClass('text-black bg-light bg-escuro text-white');
