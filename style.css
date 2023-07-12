@@ -75,6 +75,10 @@ aside[data-bs-theme="dark"] a:hover {
   background-color: #0f0f0f !important;
 }
 
+.bg-escuro {
+  background-color: var(--escuro);
+}
+
 .text-1 {
   color: var(--primary-color);
 }

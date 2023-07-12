@@ -50,60 +50,31 @@
     <!-- * Conteúdo -->
     <section class="col p-3">
       <!-- * Cards com dinâmica interativa -->
-      <div id="interativo" class="container d-flex gap-md-3 justify-content-around mb-3 flex-wrap">
-
-        <div class="card bg-white text-dark border shadow-sm my-2 my-md-0 col-12 col-md-6 col-lg">
-          <div class="card-body">
-            <h5 class="card-title">Caça-Palavras</h5>
-            <p class="card-text">Conclusão: 7 de 11</p>
-          </div>
-        </div>
-
-        <div class="card bg-white text-dark border shadow-sm my-2 my-md-0 col-12 col-md col-lg">
-          <div class="card-body">
-            <h5 class="card-title">Quiz</h5>
-            <p class="card-text">Pontuação: 12 de 15</p>
-          </div>
-        </div>
-
-        <div class="card bg-white text-dark border shadow-sm my-2 my-md-0 col-12 col-md-6 col-lg">
-          <div class="card-body">
-            <h5 class="card-title">Jogo da memória</h5>
-            <p class="card-text">Melhor tempo: 23,4s</p>
-          </div>
-        </div>
-
-        <div data-bs-toggle="modal" data-bs-target="#modalQuestionario"
-          class="card bg-white text-dark border shadow-sm my-2 my-md-0 col-12 col-md col-lg">
-          <div class="card-body">
-            <h5 class="card-title">Questionário</h5>
-            <p class="card-text">Pontuação: 15 de 15</p>
-          </div>
-        </div>
+      <div id="interativo" class="p-0 m-0">
       </div>
 
       <!-- * Aqui estará o conteudo -->
-      <div id="conteudo" class="container">
+      <div id="conteudo" class="p-0 m-0">
       </div>
     </section>
 
     <!-- * Modal -->
-    <div class="modal fade" id="modalQuestionario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalInterativo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
         <div class="modal-content bg-white text-dark" data-bs-theme="light">
           <div class="modal-header">
-            <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel">Questionário Unidade 1</h1>
+            <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel">Interativo Unidade X</h1>
             <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
             <div class="container-fluid">
               <form>
                 <div class="mb-3">
-                  <h1 class="fs-4">Deseja iniciar o questionário?</h1>
+                  <h1 class="fs-4">Deseja iniciar?</h1>
                 </div>
                 <div class="mb-3">
-                  <label for="message-text" class="d-block col-form-label">Estimativa: 30 minutos</label>
-                  <label for="message-text" class="d-block col-form-label">Maior Pontuação: 75%</label>
+                  <label for="message-text" class="d-block col-form-label">Estimativa: X minutos</label>
+                  <label for="message-text" class="d-block col-form-label">Taxa de conclusão: X em Y</label>
                   <!-- <textarea class="form-control shadow-none" id="message-text"></textarea> -->
                 </div>
               </form>
@@ -111,7 +82,7 @@
           </div>
           <div class="modal-footer">
             <button id="enviaQuestionario" type="button" class="btn btn-1 border shadow-sm"
-              data-bs-dismiss="modal">Iniciar questionario</button>
+              data-bs-dismiss="modal">Iniciar</button>
           </div>
         </div>
       </div>
@@ -120,8 +91,8 @@
 
     <!-- * Toaster -->
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
-      <div id="liveToast" class="toast shadow bg-white text-dark" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header border-bottom border-2 text-black bg-light">
+      <div id="liveToast" class="toast shadow bg-white text-dark" role="alert" aria-live="assertive" aria-atomic="true" data-bs-theme="light">
+        <div class="toast-header border-bottom border-2 text-black bg-light" data-bs-theme="light">
           <i class="bi-router-fill me-2"></i>
           <span class="me-auto"><strong>RDC</strong> - Material Extra</span>
           <small>agora</small>
