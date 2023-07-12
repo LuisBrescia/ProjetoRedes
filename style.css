@@ -8,13 +8,14 @@
 
 body {
   font-family: 'Montserrat', sans-serif !important;
-  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 :root {
   --primary-color: #64b5f6;
   --secondary-color: #0084ff;
   --claro: #f9f8fa;
+  --escuro: #181a1c;
 }
 
 /*? Elementos da página */
@@ -27,19 +28,21 @@ main {
 }
 
 aside a {
-  color: black !important;
+  color: inherit !important;
   padding: 10px 10px 10px 25px;
 }
 
-aside a:hover {
-  background-color: aliceblue;
+aside[data-bs-theme="light"] a:hover {
   background-color: var(--claro);
+}
+aside[data-bs-theme="dark"] a:hover {
+  background-color: var(--escuro);
 }
 
 /*? Componentes */
 .card {
   min-height: 8em;
-  transition: all 0.3s ease-in-out, border 0s;
+  transition: all 0.3s ease-in-out, border 0s, background-color 0s, color 0s;
 }
 
 .card:hover, .logo:hover {
@@ -57,7 +60,19 @@ aside a:hover {
 }
 
 .btn-1:active {
-  background-color: #f0f0f0;
+  background-color: #f0f0f0 !important;
+}
+
+.btn-2 {
+  background-color: var(--escuro);
+}
+
+.btn-2:hover {
+  background-color: #111314;
+}
+
+.btn-2:active {
+  background-color: #0f0f0f !important;
 }
 
 .text-1 {
