@@ -45,6 +45,7 @@ $(document).ready(function () {
 function alteraTema(tema) {
     $('body').toggleClass('bg-dark bg-white text-white text-dark');
     $('nav').attr('data-bs-theme', tema);
+    $('nav').toggleClass('bg-white bg-dark');
     $('aside').attr('data-bs-theme', tema);
     $('.card').toggleClass('bg-dark bg-white text-white text-dark');
     $('nav button').toggleClass('btn-1 btn-2');
