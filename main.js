@@ -1,36 +1,32 @@
 import $ from 'jquery/dist/jquery.min.js'
-// import '@popperjs/core/dist/umd/popper.js'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
-import { Toast } from 'bootstrap';
 import * as bootstrap from 'bootstrap';
 
+var unidade = localStorage.getItem('unidade') || 1;
+var tema = localStorage.getItem('tema') || 'light';
+
+$('[name="unidade"]').val(unidade)
+if (tema == 'dark') {
+    $('#mudaTema').toggleClass('bi-moon-stars-fill bi-circle-half');
+    alteraTema(tema);
+} else {
+    $('#mudaTema').toggleClass('bi-sun-fill bi-circle-half');
+}
+
 $(document).ready(function () {
-    var unidade = localStorage.getItem('unidade') || 1;
-    var tema = localStorage.getItem('tema') || 'light';
-
-    $('[name="unidade"]').val(unidade)
-    if (tema == 'dark') {
-        $('#mudaTema').toggleClass('bi-moon-stars-fill bi-circle-half');
-        alteraTema(tema);
-    } else {
-        $('#mudaTema').toggleClass('bi-sun-fill bi-circle-half');
-    }
-
 
     // * Função que define a unidade a ser estudada
     $('[name="unidade"]').change(function () {
         unidade = $(this).val()
         console.log(unidade)
         localStorage.setItem('unidade', unidade);
+
         carregaConteudo(unidade).then(function () {
 
-            $('#mudaTema').click(function () {
-                $(this).toggleClass('bi-sun-fill bi-moon-stars-fill');
-                tema = (tema == 'dark') ? 'light' : 'dark';
-                alteraTema(tema);
-                localStorage.setItem('tema', tema);
-                console.log(tema)
-            })
+            if (tema == 'dark') {
+                console.log('tema dark')
+                $('.card').toggleClass('bg-dark bg-white text-white text-dark');
+            }
 
             $('.card').click(function () {
                 console.log("algo");
@@ -44,23 +40,28 @@ $(document).ready(function () {
         });
     })
 
+    const toastLiveExample = document.getElementById('liveToast')
+    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+    $('#enviaQuestionario').click(function () {
+        $('.toast-body').text('Indisponível no momento...');
+        toastBootstrap.show()
+    })
+
+    $('#mudaTema').click(function () {
+        $(this).toggleClass('bi-sun-fill bi-moon-stars-fill');
+        tema = (tema == 'dark') ? 'light' : 'dark';
+        alteraTema(tema);
+        localStorage.setItem('tema', tema);
+        console.log(tema)
+    })
+
     carregaConteudo(unidade).then(function () {
 
-        const toastLiveExample = document.getElementById('liveToast')
-        const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
-        $('#enviaQuestionario').click(function () {
-            $('.toast-body').text('Indisponível no momento...');
-            toastBootstrap.show()
-        })
-
-        $('#mudaTema').click(function () {
-            $(this).toggleClass('bi-sun-fill bi-moon-stars-fill');
-            tema = (tema == 'dark') ? 'light' : 'dark';
-            alteraTema(tema);
-            localStorage.setItem('tema', tema);
-            console.log(tema)
-        })
-
+        if (tema == 'dark') {
+            console.log('tema dark')
+            $('.card').toggleClass('bg-dark bg-white text-white text-dark');
+        }
+    
         $('.card').click(function () {
             console.log("algo");
             console.log("titulo", $(this).find('.card-title').text());
