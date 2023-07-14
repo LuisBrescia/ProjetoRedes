@@ -3,88 +3,106 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="icon" type="image/svg+xml" href="/icone.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script type="module" src="./main.js"></script>
-  <link rel="stylesheet" href="./style.css">
-  <title>Redes</title>
+  <script type="module" src="./bootstrap.js"></script>
+  <title>RDC - Material Extra</title>
 </head>
 
-<body>
+<body class="bg-white text-dark">
 
-  <nav class="d-flex px-3 container-fluid bg-white py-3 border-bottom">
+  <nav class="bg-white d-flex px-3 container-fluid py-3 border-bottom sticky-top justify-content-center justify-content-md-between"
+  data-bs-theme="light">
     <!-- * Lado esquerdo -->
-    <div class="text-dark d-flex align-items-center w-50">
-      <i class="border bi-router fs-3 px-3 py-2 rounded-5 shadow-sm"></i>
-      <span class="fs-5 text-nowrap">&nbsp; RDC - Material Extra</span>
+    <div class="d-flex align-items-center">
+
+      <i class="logo bi-router-fill fs-5 px-2 py-2 rounded-5 d-none d-md-inline"></i>
+      <span class="fs-6 text-nowrap"><strong>RDC</strong> <span class="d-none d-sm-inline">- Material Extra</span></span>
+
+      <span class="mx-3 vl border-start my-0 p-0"></span>
+
+      <select name="unidade" class="form-select shadow-sm me-2" style="width: 10em">
+        <option value="1">Unidade 1</option>
+        <option value="2">Unidade 2</option>
+        <option value="3">Unidade 3</option>
+        <option value="4">Unidade 4</option>
+      </select>
     </div>
 
     <!-- * Lado direito -->
-    <div class="w-50 d-flex align-items-center justify-content-end">
-
-      <div class="input-group w-50">
-        <input type="text" class="form-control shadow-none" placeholder="O que deseja procurar">
-        <span class="input-group-text bi-search btn btn-dark"></span>
+    <div class="d-flex gap-2 align-items-center justify-content-end" style="justify-self: end;">
+      <div class="d-none d-md-flex input-group">
+        <input type="text" class="form-control shadow-sm" placeholder="Pesquisar Tópico">
+        <button class="btn input-group-text bi-search btn-1 border shadow-sm"></button>
       </div>
-
+      <button id="mudaTema" class="btn btn-1 border shadow-sm bi-circle-half"></button>
     </div>
   </nav>
 
   <main class="d-flex">
 
-    <aside class="col-auto border-end p-3 overflow-y-scroll pe-5">
-      <span>Aqui estarão os tópicos</span>
+    <aside class="d-none d-md-block col-3 col-xxl-2 position-sticky border-end"
+    data-bs-theme="light">
+      <div id="topico" class="d-flex flex-column">
+      </div>
     </aside>
 
     <!-- * Conteúdo -->
     <section class="col p-3">
-
       <!-- * Cards com dinâmica interativa -->
-      <div class="container d-flex gap-3 justify-content-around mb-3">
-
-        <div class="card col">
-          <div class="card-body">
-            <h5 class="card-title">Caça-Palavras</h5>
-            <p class="card-text">Lucas Gabriel</p>
-          </div>
-        </div>
-
-        <div class="card col">
-          <div class="card-body">
-            <h5 class="card-title">Quiz</h5>
-            <p class="card-text">Letícia</p>
-          </div>
-        </div>
-
-        <div class="card col">
-          <div class="card-body">
-            <h5 class="card-title">Jogo da memória</h5>
-            <p class="card-text">Vitor Schneider</p>
-          </div>
-        </div>
-
-        <div class="card col">
-          <div class="card-body">
-            <h5 class="card-title">Questionário</h5>
-            <p class="card-text">Luís Brescia</p>
-          </div>
-        </div>
+      <div id="interativo" class="p-0 m-0">
       </div>
 
       <!-- * Aqui estará o conteudo -->
-      <div class="container">
-        <div class="fs-3 fw-bolder">Modelo OSI</div>
-        <span>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel dicta eveniet voluptatum, laudantium autem accusantium eligendi facere expedita reiciendis, ex sed sit quo repudiandae recusandae eaque optio eum, rerum vitae?
-        </span>
-        <div class="fs-3 fw-bolder mt-3">Modelo OSI</div>
-        <span>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel dicta eveniet voluptatum, laudantium autem accusantium eligendi facere expedita reiciendis, ex sed sit quo repudiandae recusandae eaque optio eum, rerum vitae?
-        </span>
+      <div id="conteudo" class="p-0 m-0">
       </div>
-
     </section>
 
+    <!-- * Modal -->
+    <div class="modal fade" id="modalInterativo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+        <div class="modal-content bg-white text-dark" data-bs-theme="light">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel">Interativo Unidade X</h1>
+            <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="container-fluid">
+              <form>
+                <div class="mb-3">
+                  <h1 class="fs-4">Deseja iniciar?</h1>
+                </div>
+                <div class="mb-3">
+                  <label for="message-text" class="d-block col-form-label">Estimativa: X minutos</label>
+                  <label for="message-text" class="d-block col-form-label">Taxa de conclusão: X em Y</label>
+                  <!-- <textarea class="form-control shadow-none" id="message-text"></textarea> -->
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button id="enviaQuestionario" type="button" class="btn btn-1 border shadow-sm"
+              data-bs-dismiss="modal">Iniciar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- * Toaster -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div id="liveToast" class="toast shadow bg-white text-dark" role="alert" aria-live="assertive" aria-atomic="true" data-bs-theme="light">
+        <div class="toast-header border-bottom border-2 text-black bg-light" data-bs-theme="light">
+          <i class="bi-router-fill me-2"></i>
+          <span class="me-auto"><strong>RDC</strong> - Material Extra</span>
+          <small>agora</small>
+          <button type="button" class="btn-close shadow-none" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body"></div>
+      </div>
+    </div>
+
+    <script type="module" src="./main.js"></script>
   </main>
 
 </body>

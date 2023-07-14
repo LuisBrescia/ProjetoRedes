@@ -7,43 +7,130 @@
 body{
 	height: 100vh;
 	width: 100%;
+	background-color: whitesmoke;
 }
-
-#PALAVRA1{
-	position: fixed;
-	margin-left: 31vw;
-	margin-top: 13vh;
-}
-
-#PALAVRA1 > #d1{
-	margin-bottom: 0vh;
-}
-
-#PALAVRA2{
-	position: fixed;
-	margin-left: 25vw;
-	margin-top: 25vh;
-}
-#PALAVRA2 > div{
-	float: left;
-	display:inline;
-}
-
 section > div{
+	position: fixed;
+	font-size: 100%;
 	border: solid 1px black;
-	max-width: 3vw;
-	min-width: 3vw;
-	max-height: 4vh;
-	min-height: 4vh;
+	max-width: 2vw;
+	min-width: 2vw;
+	max-height: 3vh;
+	min-height: 3vh;
 	text-align: center;
 	vertical-align: center;
 }
+#PALAVRAS{
+	border: solid 1px black;
+	min-width: 25%;
+	min-height: 25vh;
+	margin-left: 25%;
+	margin-top: 75vh;
+	position: fixed;
+	background-color: gray;
+	border-radius: 5px;
+}
+#PALAVRAS > h1{
+	color: white;
+	font-family: Cascadia Code, Bahnschrift, Courier New, Bazooka, CG Times, AvantGard Md BT, Moderna, sans-serif;
+	margin-left: calc(50% - 70px);
+	margin-right: 20%;
+	display: inline;
+}
+#PALAVRAS > #palavra{
+	font-family: Cascadia Code, Bahnschrift, Courier New, Bazooka, CG Times, AvantGard Md BT, Moderna, sans-serif;
+	margin-top:1%;
+	margin-left: calc(50% - 150px);
+}
+#PALAVRAS > button{
+	color: gray;
+	margin-left: 0.5%;
+	border-radius: 3px;
+	border-color: white;
+	background-color: white;
+	font-family: Cascadia Code, Bahnschrift, Courier New, Bazooka, CG Times, AvantGard Md BT, Moderna, sans-serif;
+}
 
-section > p{
-	max-width: 3vw;
-	min-width: 3vw;
-	max-height: 4vh;
-	min-height: 4vh;
-	text-align: center;
-	vertical-align: center;
+#CONTEUDOS{
+	border: solid 1px black;
+	border-left: none;
+	min-width: 25%;
+	min-height: 25vh;
+	margin-left: 50%;
+	margin-top: 75vh;
+	position: fixed;
+	background-color: gray;
+	border-radius: 5px;
+}
+#CONTEUDOS > h1{
+	color: white;
+	font-family: Cascadia Code, Bahnschrift, Courier New, Bazooka, CG Times, AvantGard Md BT, Moderna, sans-serif;
+	margin-left: calc(50% - 70px);
+	margin-right: 20%;
+	display: inline;
+}
+#CONTEUDOS > #conteudo{
+	font-family: Cascadia Code, Bahnschrift, Courier New, Bazooka, CG Times, AvantGard Md BT, Moderna, sans-serif;
+	margin-top:1%;
+	margin-left: calc(50% - 150px);
+}
+#CONTEUDOS > button{
+	color: gray;
+	margin-left: 0.5%;
+	border-radius: 3px;
+	border-color: white;
+	background-color: white;
+	font-family: Cascadia Code, Bahnschrift, Courier New, Bazooka, CG Times, AvantGard Md BT, Moderna, sans-serif;
+}
+#PALAVRAS > p, #CONTEUDOS > p{
+	color: white;
+	font-family: Cascadia Code, Bahnschrift, Courier New, Bazooka, CG Times, AvantGard Md BT, Moderna, sans-serif;
+	margin-left:2%;
+}
+#menu-editavel{
+	position: fixed;
+	margin-left:80%;
+	margin-top: 75vh;
+}
+#interruptor, #avancar, #recuar{
+	border-radius: 5px;
+	border-color: white;
+	background-color: white;
+	font-family: Cascadia Code, Bahnschrift, Courier New, Bazooka, CG Times, AvantGard Md BT, Moderna, sans-serif;
+	min-width: 10%;
+	min-height: 8vh;
+}
+h3{
+	color: gray;
+	font-family: Cascadia Code, Bahnschrift, Courier New, Bazooka, CG Times, AvantGard Md BT, Moderna, sans-serif;
+	margin-left: 4vw;
+}
+#verthoriz{
+	position: fixed;
+	border-radius: 5px;
+	border-color: white;
+	background-color: white;
+	font-family: Cascadia Code, Bahnschrift, Courier New, Bazooka, CG Times, AvantGard Md BT, Moderna, sans-serif;
+	min-width: 120px;
+	margin-left: 80%;
+	margin-top: 86.5vh;
+}
+#salvar{
+	margin-left: 89%;
+	position: fixed;
+	margin-top: 86.5vh;
+	border-radius: 5px;
+	border-color: white;
+	background-color: white;
+	font-family: Cascadia Code, Bahnschrift, Courier New, Bazooka, CG Times, AvantGard Md BT, Moderna, sans-serif;
+}
+section > p > button{
+	margin-left: 3%;
+	min-width: 5%;
+	min-height: 1vh;
+}
+section > #paragrafo1 {
+	margin-left: 3%;
+	min-width: 5%;
+	min-height: 1vh;
 }

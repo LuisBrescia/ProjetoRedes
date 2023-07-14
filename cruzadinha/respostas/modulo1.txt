@@ -1,0 +1,1 @@
+var respostasString = ["internet", "atenuacao", "interferencia", "ruido", "hibrida", "estrela", "cem", "cat5e", "setenta", "dois", "vintequatro", "quatro", "crossover", "1u", "quatro", "backbone", "fibraoptica", "utp", "coaxial", "stp"];
