@@ -20,10 +20,10 @@ const inputcEl = document.getElementById('conteudo');
 function verifica_campo(letra, id){
 let palavraEl = document.querySelectorAll(classe_atual(id));
 
-	/*se palavraEl tem mais de 2 letras, apagar a outra e colocar a nova; esse if é pra verificar se o campo não ta
+	/* se palavraEl tem mais de 2 letras, apagar a outra e colocar a nova; esse if é pra verificar se o campo não ta
 	undefined, se for true tem letra já*/
 	if(palavraEl[letra].innerHTML){
-	
+
 		//adicionando a palavra a um vetor de caracteres
 		novoCaractere = palavraEl[letra].innerHTML.split('');
 		//removendo o caractere antigo e colocando o novo digitado

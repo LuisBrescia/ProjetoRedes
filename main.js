@@ -14,7 +14,6 @@ if (tema == 'dark') {
 }
 
 $(document).ready(function () {
-
     // * Função que define a unidade a ser estudada
     $('[name="unidade"]').change(function () {
         unidade = $(this).val()
@@ -22,23 +21,24 @@ $(document).ready(function () {
         localStorage.setItem('unidade', unidade);
 
         carregaConteudo(unidade).then(function () {
-
             if (tema == 'dark') {
                 console.log('tema dark')
                 $('.card').toggleClass('bg-dark bg-white text-white text-dark');
                 $('.card').attr('data-bs-theme', 'dark');
             }
-
-            $('.card').removeClass('d-none');
-
+            $('.conteudo, .card').removeClass('d-none');
             $('.card').click(function () {
-                console.log("algo");
                 console.log("titulo", $(this).find('.card-title').text());
                 $('.modal-title').text($(this).find('.card-title').text() + ' Unidade ' + unidade);
                 $('.modal-body h1').text('Deseja iniciar o ' + $(this).find('.card-title').text() + '?');
                 $('.modal-body label:nth-child(1)').text('Tempo estimado: ' + Math.floor(Math.random() * 60) + ' minutos');
                 $('.modal-body label:nth-child(2)').text($(this).find('.card-text').text());
                 $('.modal-footer button').text('Iniciar ' + $(this).find('.card-title').text());
+                $('.modal-footer button').attr('interativo', $(this).attr('id'));
+            });
+    
+            $('#buttonModal').click(function () {
+                window.location.href = `HTML/${$(this).attr('interativo')}.html?unidade=${unidade}`;
             });
         });
     })
@@ -66,20 +66,24 @@ $(document).ready(function () {
             $('.card').attr('data-bs-theme', 'dark');
         }
 
-        $('.card').removeClass('d-none');
-    
+        $('.conteudo').removeClass('d-none');
+        $('.conteudo, .card').removeClass('d-none');
         $('.card').click(function () {
-            console.log("algo");
             console.log("titulo", $(this).find('.card-title').text());
             $('.modal-title').text($(this).find('.card-title').text() + ' Unidade ' + unidade);
             $('.modal-body h1').text('Deseja iniciar o ' + $(this).find('.card-title').text() + '?');
             $('.modal-body label:nth-child(1)').text('Tempo estimado: ' + Math.floor(Math.random() * 60) + ' minutos');
             $('.modal-body label:nth-child(2)').text($(this).find('.card-text').text());
             $('.modal-footer button').text('Iniciar ' + $(this).find('.card-title').text());
+            $('.modal-footer button').attr('interativo', $(this).attr('id'));
+        });
+
+        $('#buttonModal').click(function () {
+            window.location.href = `HTML/${$(this).attr('interativo')}.html?unidade=${unidade}`;
         });
     });
 })
-
+// * Alterna entre dark e light mode
 function alteraTema(tema) {
     $('nav, aside, .modal-content, #liveToast, .toast-header, .card').attr('data-bs-theme', tema);
     $('nav button, .modal-footer button').toggleClass('btn-1 btn-2');
@@ -88,13 +92,13 @@ function alteraTema(tema) {
     $('body, .card, .modal-content, #liveToast').toggleClass('bg-dark bg-white text-white text-dark');
     $('.modal-header button, .toast-header button').toggleClass('btn-close-white');
 }
-
+// * Carrega tópicos, cards, e conteúdo de uma unidade
 function carregaConteudo(unidade) {
     return new Promise(function (resolve, reject) {
         $('#topico').load('/unidade' + unidade + '.html #unidade' + unidade + '_topicos', function () {
             $('#interativo').load('/unidade' + unidade + '.html #unidade' + unidade + '_interativo', function () {
                 $('#conteudo').load('/unidade' + unidade + '.html #unidade' + unidade + '_conteudo', function () {
-                    resolve(); // Resolve a promessa após carregar todos os elementos
+                    resolve(); 
                 });
             });
         });
