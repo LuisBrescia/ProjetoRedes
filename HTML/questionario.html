@@ -35,27 +35,54 @@
   <!-- ? Página -->
   <main class="d-flex">
 
-    <aside class="d-none d-md-block col-3 col-xxl-2 position-sticky border-end" data-bs-theme="light">
+    <!-- <aside class="d-none d-md-block col-3 col-xxl-2 position-sticky border-end" data-bs-theme="light">
       <div id="questionario_perguntas" class="d-flex flex-column">
       </div>
-    </aside>
+    </aside> -->
 
-    <section class="col p-3 container d-flex align-items-center">
+    <section class="col py-3 container d-flex align-items-center">
 
-      <div class="col p-3 h-50 container d-flex flex-column align-items-center justify-content-evenly">
-        <h3 class="text-center fs-4">Questão 2</h3>
-        <h3 class="text-center fs-5">Qual é a diferença entre fibras ópticas monomodo e multimodo?</h3>
+      <div class="col py-3 h-50 container d-flex flex-column align-items-center justify-content-evenly">
 
-        <textarea class="w-75 form-control shadow-sm" name="resposta" id="questionario_resposta"
-        style="max-height: 50vh;"></textarea>
+        <h3 class="bg-info fs-4 my-2">Questão 2</h3>
+        <h3 class="bg-info text-justify fs-5 my-2">Qual é a diferença entre fibras ópticas monomodo e multimodo?</h3>
 
-        <div class="d-flex justify-content-center gap-2 my-2">
-          <button id="anterior" class="btn btn-1 border shadow-sm">Anterior</button>
-          <button id="proximo" class="btn btn-1 border shadow-sm">Próximo</button>
+        <textarea class="form-control shadow-sm" name="resposta" id="questionario_resposta"
+          style="max-height: 50vh;"></textarea>
+
+        <!-- * Questões -->
+        <div class="justify-content-center my-2 w-100">
+          <div class="d-none d-md-flex gap-2">
+            <button class="btn btn-1 border shadow-sm col">1</button>
+            <button class="btn btn-1 border shadow-sm col">2</button>
+            <button class="btn btn-1 border shadow-sm col">3</button>
+            <button class="btn btn-1 border shadow-sm col">4</button>
+            <button class="btn btn-1 border shadow-sm col">5</button>
+            <button class="btn btn-1 border shadow-sm col">6</button>
+            <button class="btn btn-1 border shadow-sm col">7</button>
+            <button class="btn btn-1 border shadow-sm col">8</button>
+            <button class="btn btn-1 border shadow-sm col">9</button>
+            <button class="btn btn-1 border shadow-sm col">10</button>
+          </div>
+          <!-- ? Para responsividade -->
+          <div class="d-flex d-md-none flex-wrap my-2 gap-2">
+            <button class="btn btn-1 border shadow-sm col">1</button>
+            <button class="btn btn-1 border shadow-sm col">2</button>
+            <button class="btn btn-1 border shadow-sm col">3</button>
+            <button class="btn btn-1 border shadow-sm col">4</button>
+            <button class="btn btn-1 border shadow-sm col">5</button>
+          </div>
+          <div class="d-flex d-md-none flex-wrap my-2 gap-2">
+            <button class="btn btn-1 border shadow-sm col">6</button>
+            <button class="btn btn-1 border shadow-sm col">7</button>
+            <button class="btn btn-1 border shadow-sm col">8</button>
+            <button class="btn btn-1 border shadow-sm col">9</button>
+            <button class="btn btn-1 border shadow-sm col">10</button>
+          </div>
         </div>
+
+  
       </div>
-
-
 
     </section>
 
@@ -66,7 +93,7 @@
           <div class="modal-header">
             <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel">Voltar a página inicial?</h1>
             <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"
-            data-bs-theme="light"></button>
+              data-bs-theme="light"></button>
           </div>
           <div class="modal-body">
             <div class="container-fluid">
