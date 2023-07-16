@@ -140,12 +140,19 @@ nav .btn-default:hover, nav .btn-default:active {
   text-align: justify;
 }
 
+#questao_enunciado {
+  min-height: 10%;
+}
+
 /** Media Querys */
 
 @media screen and (max-width: 576px) {
   #material {
     font-weight: bold;
   } 
+  #questao_enunciado {
+    min-height: 25%;
+  }
 }
 
 .DISABLE-Topography {
