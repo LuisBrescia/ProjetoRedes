@@ -85,12 +85,39 @@ button, input, textarea, select, option, label {
   background-color: #0f0f0f !important;
 }
 
-.btn-1:hover, .btn-2:hover, #seletorQuestoes button.active:hover {
-  transform: scale(1.04);
+.modal-footer button {
+  padding: 2% 5%;
 }
 
-.btn-1:active, .btn-2:active, #seletorQuestoes button.active:active {
+.btn-default {
+  border: none;
+  background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  color: #fff;
+  font-weight: 900;
+  transition: all 0.3s ease-in-out, outline 0s !important;
+}
+
+.btn-default:hover {
+  background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 75%);
+  color: #fff;
+}
+
+.btn-default:active {
+  background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 50%);
+  color: #fff !important;
+}
+
+#seletorQuestoes button:hover {
   transform: scale(1.02);
+}
+
+#seletorQuestoes button:active {
+  transform: scale(1.01);
+}
+
+.bg-1 {
+  background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  color: #fff;
 }
 
 .bg-escuro {

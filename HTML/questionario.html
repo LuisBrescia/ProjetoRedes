@@ -44,11 +44,12 @@
 
       <div class="col py-3 h-50 container d-flex flex-column align-items-center justify-content-evenly">
 
-        <h3 class="fs-4 my-2">Questão <span id="questao_numero">X</span></h3>
-        <h3 id="questao_enunciado" class="fs-5 my-2 text-justify">Carregando enunciado...</h3>
+        <h3 class="fs-4 my-3 fw-bold bg-1 px-3 py-2 rounded-5">Questão <span id="questao_numero">X</span></h3>
 
-        <textarea class="form-control shadow-sm" name="resposta" id="questionario_resposta"
-          style="max-height: 50vh;"></textarea>
+        <h3 id="questao_enunciado" class="fs-5 text-justify h-50">Carregando enunciado...</h3>
+
+        <textarea class="form-control shadow-sm h-50" rows="4" name="resposta" id="questionario_resposta"
+          style="resize: none;"></textarea>
 
         <!-- * Seleção de questões -->
         <div id="seletorQuestoes" class="justify-content-center my-2 w-100">
@@ -67,10 +68,7 @@
             <button class="btn funcional border shadow-sm col" data-value="10">10</button>
           </div>
         </div>
-
         <button id="enviaQuestionario" class="btn btn-1 border shadow-sm mt-2 disabled">Enviar Questionário</button>
-
-  
       </div>
 
     </section>
@@ -90,9 +88,9 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button id="buttonModal" type="button" class="btn btn-1 border shadow-sm"
+            <button id="buttonModal" type="button" class="btn btn-1 border shadow-sm rounded-5"
               data-bs-dismiss="modal">Cancelar</button>
-            <button id="fechaAtividade" type="button" class="btn btn-1 border shadow-sm">Confirmar</button>
+            <button id="fechaAtividade" type="button" class="btn btn-default shadow-sm rounded-5">Confirmar</button>
           </div>
         </div>
       </div>

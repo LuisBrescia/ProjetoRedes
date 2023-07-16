@@ -30,7 +30,7 @@ $(document).ready(function () {
             $('.card').click(function () {
                 console.log("titulo", $(this).find('.card-title').text());
                 $('.modal-title').text($(this).find('.card-title').text() + ' Unidade ' + unidade);
-                $('.modal-body h1').text('Deseja iniciar o ' + $(this).find('.card-title').text() + '?');
+                $('.modal-body h1').text('Deseja iniciar ' + $(this).find('.card-title').text() + '?');
                 $('.modal-body label:nth-child(1)').text('Tempo estimado: ' + Math.floor(Math.random() * 60) + ' minutos');
                 $('.modal-body label:nth-child(2)').text($(this).find('.card-text').text());
                 $('.modal-footer button').text('Iniciar ' + $(this).find('.card-title').text());
@@ -71,7 +71,7 @@ $(document).ready(function () {
         $('.card').click(function () {
             console.log("titulo", $(this).find('.card-title').text());
             $('.modal-title').text($(this).find('.card-title').text() + ' Unidade ' + unidade);
-            $('.modal-body h1').text('Deseja iniciar o ' + $(this).find('.card-title').text() + '?');
+            $('.modal-body h1').text('Deseja iniciar ' + $(this).find('.card-title').text() + '?');
             $('.modal-body label:nth-child(1)').text('Tempo estimado: ' + Math.floor(Math.random() * 60) + ' minutos');
             $('.modal-body label:nth-child(2)').text($(this).find('.card-text').text());
             $('.modal-footer button').text('Iniciar ' + $(this).find('.card-title').text());
