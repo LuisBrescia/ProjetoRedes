@@ -51,7 +51,6 @@ aside[data-bs-theme="dark"] a:hover {
 }
 
 #seletorQuestoes button.active {
-  border-color: #00ddff !important;
   color: #fff;
   background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%) !important;
 }
@@ -94,7 +93,7 @@ button, input, textarea, select, option, label {
   background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
   color: #fff;
   font-weight: 900;
-  transition: all 0.3s ease-in-out, outline 0s !important;
+  transition: all 0.3s ease-in-out, outline 0s, border 0s !important;
 }
 
 .btn-default:hover {
@@ -105,6 +104,11 @@ button, input, textarea, select, option, label {
 .btn-default:active {
   background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 50%);
   color: #fff !important;
+}
+
+nav .btn-default:hover, nav .btn-default:active {
+  background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  color: #fff;
 }
 
 #seletorQuestoes button:hover {
