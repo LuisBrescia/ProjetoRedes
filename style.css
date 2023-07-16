@@ -97,18 +97,13 @@ button, input, textarea, select, option, label {
 }
 
 .btn-default:hover {
-  background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 75%);
+  background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 60%);
   color: #fff;
 }
 
 .btn-default:active {
-  background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 50%);
+  background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 40%);
   color: #fff !important;
-}
-
-nav .btn-default:hover, nav .btn-default:active {
-  background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-  color: #fff;
 }
 
 #seletorQuestoes button:hover {

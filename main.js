@@ -71,7 +71,7 @@ $(document).ready(function () {
         $('.card').click(function () {
             console.log("titulo", $(this).find('.card-title').text());
             $('.modal-title').text($(this).find('.card-title').text() + ' Unidade ' + unidade);
-            $('.modal-body h1').text('Deseja iniciar ' + $(this).find('.card-title').text() + '?');
+            // $('.modal-body h1').text('Deseja iniciar ' + $(this).find('.card-title').text() + '?');
             $('.modal-body label:nth-child(1)').text('Tempo estimado: ' + Math.floor(Math.random() * 60) + ' minutos');
             $('.modal-body label:nth-child(2)').text($(this).find('.card-text').text());
             $('.modal-footer button').text('Iniciar ' + $(this).find('.card-title').text());
@@ -91,6 +91,7 @@ function alteraTema(tema) {
     $('.toast-header').toggleClass('text-black bg-light bg-escuro text-white');
     $('body, .card, .modal-content, #liveToast').toggleClass('bg-dark bg-white text-white text-dark');
     $('.modal-header button, .toast-header button').toggleClass('btn-1 btn-2 btn-close-white');
+    $('.modal-header, .modal-footer').toggleClass('border-secondary');
 }
 // * Carrega tópicos, cards, e conteúdo de uma unidade
 function carregaConteudo(unidade) {

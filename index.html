@@ -33,7 +33,7 @@
     <div class="d-flex gap-2 align-items-center justify-content-end" style="justify-self: end;">
       <div class="d-none d-md-flex input-group">
         <input type="text" class="form-control shadow-sm" placeholder="Pesquisar Tópico">
-        <button class="btn input-group-text bi-search btn-1 border shadow-sm"></button>
+        <button class="btn input-group-text bi-search btn-default shadow-sm"></button>
       </div>
       <button id="mudaTema" class="btn btn-default shadow-sm bi-circle-half"></button>
     </div>
@@ -61,18 +61,15 @@
     <!-- * Modal -->
     <div class="modal fade" id="modalInterativo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
-        <div class="modal-content bg-white text-dark" data-bs-theme="light">
+        <div class="modal-content bg-white text-dark">
           <div class="modal-header">
             <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel">Interativo Unidade X</h1>
             <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body">
+          <div class="modal-body px-0">
             <div class="container-fluid">
               <form>
-                <div class="mb-3">
-                  <h1 class="fs-4">Deseja iniciar?</h1>
-                </div>
-                <div class="mb-3">
+                <div>
                   <label for="message-text" class="d-block col-form-label">Estimativa: X minutos</label>
                   <label for="message-text" class="d-block col-form-label">Taxa de conclusão: X em Y</label>
                   <!-- <textarea class="form-control shadow-none" id="message-text"></textarea> -->
