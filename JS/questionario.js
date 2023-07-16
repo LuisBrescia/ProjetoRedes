@@ -10,9 +10,22 @@ console.log('questionario.js')
 var url_string = window.location.href;
 var url = new URL(url_string);
 var numero_questionario = url.searchParams.get("unidade") || 1;
+var numero_questao = localStorage.getItem('numero_questao') || 1;
 
 $(document).ready(function () {
-    carregaQuestoes(numero_questionario);
+    $('#questao_numero').text(numero_questao);
+    $('#questao_enunciado').load(`../dados_questionario/questionario${numero_questionario}.html [data-value='${numero_questao}']`);
+
+    $('#enviaQuestionario').click(function () {
+        $('.toast-body').text('API KEY Inválida');
+        toastBootstrap.show()
+    });
+
+    $('#seletorQuestoes button').click(function () {
+        console.log($(this).data('value'))
+        $('#questao_numero').text($(this).data('value'));
+        $('#questao_enunciado').load(`../dados_questionario/questionario${numero_questionario}.html [data-value="${$(this).data('value')}"]`);
+    });
 })
 
 // * Carrega tópicos, cards, e conteúdo de uma unidade

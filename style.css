@@ -45,7 +45,7 @@ aside[data-bs-theme="dark"] a:hover {
   transition: all 0.3s ease-in-out, border 0s, background-color 0s, color 0s;
 }
 
-.card:hover, .logo:hover {
+.card:hover, .logo:hover, .funcional:hover {
   border-color: var(--primary-color) !important;
   cursor: pointer;
 }
@@ -88,6 +88,10 @@ button, input, textarea, select, option, label {
 
 .vl {
   height: 30px;
+}
+
+.text-justify { /* Como que o bootstrap não tem isso meu Deus do céu */
+  text-align: justify;
 }
 
 /** Media Querys */

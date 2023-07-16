@@ -44,42 +44,44 @@
 
       <div class="col py-3 h-50 container d-flex flex-column align-items-center justify-content-evenly">
 
-        <h3 class="bg-info fs-4 my-2">Questão 2</h3>
-        <h3 class="bg-info text-justify fs-5 my-2">Qual é a diferença entre fibras ópticas monomodo e multimodo?</h3>
+        <h3 class="fs-4 my-2">Questão <span id="questao_numero">X</span></h3>
+        <h3 id="questao_enunciado" class="fs-5 my-2 text-justify">Qual é a diferença entre fibras ópticas monomodo e multimodo?</h3>
 
         <textarea class="form-control shadow-sm" name="resposta" id="questionario_resposta"
           style="max-height: 50vh;"></textarea>
 
-        <!-- * Questões -->
-        <div class="justify-content-center my-2 w-100">
+        <!-- * Seleção de questões -->
+        <div id="seletorQuestoes" class="justify-content-center my-2 w-100">
           <div class="d-none d-md-flex gap-2">
-            <button class="btn btn-1 border shadow-sm col">1</button>
-            <button class="btn btn-1 border shadow-sm col">2</button>
-            <button class="btn btn-1 border shadow-sm col">3</button>
-            <button class="btn btn-1 border shadow-sm col">4</button>
-            <button class="btn btn-1 border shadow-sm col">5</button>
-            <button class="btn btn-1 border shadow-sm col">6</button>
-            <button class="btn btn-1 border shadow-sm col">7</button>
-            <button class="btn btn-1 border shadow-sm col">8</button>
-            <button class="btn btn-1 border shadow-sm col">9</button>
-            <button class="btn btn-1 border shadow-sm col">10</button>
+            <button class="btn funcional border shadow-sm col" data-value="1">1</button>
+            <button class="btn funcional border shadow-sm col" data-value="2">2</button>
+            <button class="btn funcional border shadow-sm col" data-value="3">3</button>
+            <button class="btn funcional border shadow-sm col" data-value="4">4</button>
+            <button class="btn funcional border shadow-sm col" data-value="5">5</button>
+            <button class="btn funcional border shadow-sm col" data-value="6">6</button>
+            <button class="btn funcional border shadow-sm col" data-value="7">7</button>
+            <button class="btn funcional border shadow-sm col" data-value="8">8</button>
+            <button class="btn funcional border shadow-sm col" data-value="9">9</button>
+            <button class="btn funcional border shadow-sm col" data-value="10">10</button>
           </div>
           <!-- ? Para responsividade -->
           <div class="d-flex d-md-none flex-wrap my-2 gap-2">
-            <button class="btn btn-1 border shadow-sm col">1</button>
-            <button class="btn btn-1 border shadow-sm col">2</button>
-            <button class="btn btn-1 border shadow-sm col">3</button>
-            <button class="btn btn-1 border shadow-sm col">4</button>
-            <button class="btn btn-1 border shadow-sm col">5</button>
+            <button class="btn funcional border shadow-sm col" data-value="1">1</button>
+            <button class="btn funcional border shadow-sm col" data-value="2">2</button>
+            <button class="btn funcional border shadow-sm col" data-value="3">3</button>
+            <button class="btn funcional border shadow-sm col" data-value="4">4</button>
+            <button class="btn funcional border shadow-sm col" data-value="5">5</button>
           </div>
           <div class="d-flex d-md-none flex-wrap my-2 gap-2">
-            <button class="btn btn-1 border shadow-sm col">6</button>
-            <button class="btn btn-1 border shadow-sm col">7</button>
-            <button class="btn btn-1 border shadow-sm col">8</button>
-            <button class="btn btn-1 border shadow-sm col">9</button>
-            <button class="btn btn-1 border shadow-sm col">10</button>
+            <button class="btn funcional border shadow-sm col" data-value="6">6</button>
+            <button class="btn funcional border shadow-sm col" data-value="7">7</button>
+            <button class="btn funcional border shadow-sm col" data-value="8">8</button>
+            <button class="btn funcional border shadow-sm col" data-value="9">9</button>
+            <button class="btn funcional border shadow-sm col" data-value="10">10</button>
           </div>
         </div>
+
+        <button id="enviaQuestionario" class="btn btn-1 border shadow-sm mt-2 disabled">Enviar Questionário</button>
 
   
       </div>
