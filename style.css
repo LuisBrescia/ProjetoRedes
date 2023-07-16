@@ -93,7 +93,7 @@ button, input, textarea, select, option, label {
   background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
   color: #fff;
   font-weight: 900;
-  transition: all 0.3s ease-in-out, outline 0s, border 0s !important;
+  transition: all 0.3s ease-in-out, outline 0s, border 0s, color 0s !important;
 }
 
 .btn-default:hover {
