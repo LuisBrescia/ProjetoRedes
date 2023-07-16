@@ -51,20 +51,16 @@ aside[data-bs-theme="dark"] a:hover {
 }
 
 #seletorQuestoes button.active {
+  border: none !important;
   color: #fff;
-  background-color: var(--primary-color);
-}
-
-#seletorQuestoes button.active:active {
-  color: #fff;
-  background-color: var(--primary-color) !important;
-  filter: brightness(0.95);
+  background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%) !important;
 }
 
 /* ? Estilização de componentes */
 button, input, textarea, select, option, label {
-  transition: all 0s !important;
+  transition: border 0s, color 0s, background-color 0s, transform 0.3s !important;
 }
+
 .btn-1 {
   background-color: var(--claro);
 }
@@ -87,6 +83,14 @@ button, input, textarea, select, option, label {
 
 .btn-2:active {
   background-color: #0f0f0f !important;
+}
+
+.btn-1:hover, .btn-2:hover, #seletorQuestoes button.active:hover {
+  transform: scale(1.04);
+}
+
+.btn-1:active, .btn-2:active, #seletorQuestoes button.active:active {
+  transform: scale(1.02);
 }
 
 .bg-escuro {
