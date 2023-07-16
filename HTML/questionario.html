@@ -10,34 +10,63 @@
 </head>
 
 <body class="bg-white text-dark">
-  <nav data-bs-theme="light" class="bg-white d-flex px-2 px-md-3 container-fluid py-3 border-bottom sticky-top justify-content-between">
+  <nav data-bs-theme="light"
+    class="bg-white d-flex px-2 px-md-3 container-fluid py-3 border-bottom sticky-top justify-content-between">
     <!-- * Lado esquerdo -->
     <div class="d-flex align-items-center">
       <i class="logo bi-router-fill fs-5 px-2 py-2 rounded-5 d-none d-md-inline"></i>
-      <span class="fs-6 text-nowrap"><strong>RDC</strong> <span class="d-none d-sm-inline">- Material Extra</span></span>
+      <span class="fs-6 text-nowrap"><strong>RDC</strong> <span class="d-none d-sm-inline">- Material
+          Extra</span></span>
       <span class="mx-3 vl border-start my-0 p-0"></span>
       <span class="fs-6 text-nowrap">
         <strong>Questionário</strong> <span class="d-none d-sm-inline">- Unidade</span>
-        <span id="material" class="fw-bold"></span>
+        <span id="material"></span>
       </span>
     </div>
-    
+
     <!-- * Lado direito -->
     <div class="d-flex gap-2 align-items-center justify-content-end" style="justify-self: end;">
-      <button class="btn btn-1 border shadow-sm bi-arrow-bar-left" 
-      data-bs-toggle="modal" data-bs-target="#modalInterativo"></button>
+      <button class="btn btn-1 border shadow-sm bi-arrow-bar-left" data-bs-toggle="modal"
+        data-bs-target="#modalInterativo"></button>
       <button id="mudaTema" class="btn btn-1 border shadow-sm bi-circle-half"></button>
     </div>
   </nav>
 
+  <!-- ? Página -->
   <main class="d-flex">
+
+    <aside class="d-none d-md-block col-3 col-xxl-2 position-sticky border-end" data-bs-theme="light">
+      <div id="questionario_perguntas" class="d-flex flex-column">
+      </div>
+    </aside>
+
+    <section class="col p-3 container d-flex align-items-center">
+
+      <div class="col p-3 h-50 container d-flex flex-column align-items-center justify-content-evenly">
+        <h3 class="text-center fs-4">Questão 2</h3>
+        <h3 class="text-center fs-5">Qual é a diferença entre fibras ópticas monomodo e multimodo?</h3>
+
+        <textarea class="w-75 form-control shadow-sm" name="resposta" id="questionario_resposta"
+        style="max-height: 50vh;"></textarea>
+
+        <div class="d-flex justify-content-center gap-2 my-2">
+          <button id="anterior" class="btn btn-1 border shadow-sm">Anterior</button>
+          <button id="proximo" class="btn btn-1 border shadow-sm">Próximo</button>
+        </div>
+      </div>
+
+
+
+    </section>
+
     <!-- * Modal -->
     <div class="modal fade" id="modalInterativo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
         <div class="modal-content bg-white text-dark" data-bs-theme="light">
           <div class="modal-header">
             <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel">Voltar a página inicial?</h1>
-            <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"
+            data-bs-theme="light"></button>
           </div>
           <div class="modal-body">
             <div class="container-fluid">
@@ -69,6 +98,8 @@
 
     <script type="module" src="../main.js"></script>
     <script type="module" src="../interativo.js"></script>
+    <script type="module" src="../JS/questionario.js"></script>
   </main>
 </body>
+
 </html>

@@ -85,19 +85,19 @@ $(document).ready(function () {
 })
 // * Alterna entre dark e light mode
 function alteraTema(tema) {
-    $('nav, aside, .modal-content, #liveToast, .toast-header, .card').attr('data-bs-theme', tema);
-    $('nav button, .modal-footer button').toggleClass('btn-1 btn-2');
+    $('nav, aside, .modal-content, #liveToast, .toast-header, .card, textarea, button').attr('data-bs-theme', tema);
+    $('button').toggleClass('btn-1 btn-2');
     $('nav').toggleClass('bg-white bg-dark');
     $('.toast-header').toggleClass('text-black bg-light bg-escuro text-white');
     $('body, .card, .modal-content, #liveToast').toggleClass('bg-dark bg-white text-white text-dark');
-    $('.modal-header button, .toast-header button').toggleClass('btn-close-white');
+    $('.modal-header button, .toast-header button').toggleClass('btn-1 btn-2 btn-close-white');
 }
 // * Carrega tópicos, cards, e conteúdo de uma unidade
 function carregaConteudo(unidade) {
     return new Promise(function (resolve, reject) {
-        $('#topico').load('/unidade' + unidade + '.html #unidade' + unidade + '_topicos', function () {
-            $('#interativo').load('/unidade' + unidade + '.html #unidade' + unidade + '_interativo', function () {
-                $('#conteudo').load('/unidade' + unidade + '.html #unidade' + unidade + '_conteudo', function () {
+        $('#topico').load('/dados_unidade/unidade' + unidade + '.html #unidade_topicos', function () {
+            $('#interativo').load('/dados_unidade/unidade' + unidade + '.html #unidade_interativo', function () {
+                $('#conteudo').load('/dados_unidade/unidade' + unidade + '.html #unidade_conteudo', function () {
                     resolve(); 
                 });
             });
