@@ -51,7 +51,7 @@ aside[data-bs-theme="dark"] a:hover {
 }
 
 #seletorQuestoes button.active {
-  border: none !important;
+  border-color: #00ddff !important;
   color: #fff;
   background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%) !important;
 }
