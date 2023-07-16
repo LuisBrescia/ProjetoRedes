@@ -50,6 +50,17 @@ aside[data-bs-theme="dark"] a:hover {
   cursor: pointer;
 }
 
+#seletorQuestoes button.active {
+  color: #fff;
+  background-color: var(--primary-color);
+}
+
+#seletorQuestoes button.active:active {
+  color: #fff;
+  background-color: var(--primary-color) !important;
+  filter: brightness(0.95);
+}
+
 /* ? Estilização de componentes */
 button, input, textarea, select, option, label {
   transition: all 0s !important;

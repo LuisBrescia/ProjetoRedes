@@ -15,6 +15,8 @@ var numero_questao = localStorage.getItem('numero_questao') || 1;
 $(document).ready(function () {
     $('#questao_numero').text(numero_questao);
     $('#questao_enunciado').load(`../dados_questionario/questionario${numero_questionario}.html [data-value='${numero_questao}']`);
+    $('#seletorQuestoes button').removeClass('active');
+    $(`#seletorQuestoes [data-value='${numero_questao}']`).addClass('active');
 
     $('#enviaQuestionario').click(function () {
         $('.toast-body').text('API KEY Inválida');
@@ -25,6 +27,9 @@ $(document).ready(function () {
         console.log($(this).data('value'))
         $('#questao_numero').text($(this).data('value'));
         $('#questao_enunciado').load(`../dados_questionario/questionario${numero_questionario}.html [data-value="${$(this).data('value')}"]`);
+        $('#seletorQuestoes button').removeClass('active');
+        $(this).addClass('active');
+        localStorage.setItem('numero_questao', $(this).data('value'));
     });
 })
 
