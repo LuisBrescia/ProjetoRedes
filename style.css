@@ -42,7 +42,7 @@ aside[data-bs-theme="dark"] a:hover {
 /*? Componentes */
 .card {
   min-height: 8em;
-  transition: all 0.3s;
+  transition: all 0.3s, border 0s;
   background: linear-gradient(180deg, var(--primary-color) 0%, var(--secondary-color) 100%) !important;
   color: #fff;
   font-weight: 900;
