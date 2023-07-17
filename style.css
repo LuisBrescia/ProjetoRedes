@@ -42,7 +42,15 @@ aside[data-bs-theme="dark"] a:hover {
 /*? Componentes */
 .card {
   min-height: 8em;
-  transition: all 0.3s ease-in-out, border 0s, background-color 0s, color 0s;
+  transition: all 0.3s;
+  background: linear-gradient(180deg, var(--primary-color) 0%, var(--secondary-color) 100%) !important;
+  color: #fff;
+  font-weight: 900;
+}
+
+.card:hover {
+  background: linear-gradient(180deg, var(--primary-color) 0%, var(--secondary-color) 60%) !important;
+  color: #fff;
 }
 
 .card:hover, .logo:hover, .funcional:hover {
@@ -106,11 +114,11 @@ button, input, textarea, select, option, label {
   color: #fff !important;
 }
 
-#seletorQuestoes button:hover {
+.card:hover, #seletorQuestoes button:hover {
   transform: scale(1.02);
 }
 
-#seletorQuestoes button:active {
+.card:active, #seletorQuestoes button:active {
   transform: scale(1.01);
 }
 

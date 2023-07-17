@@ -35,8 +35,9 @@ $(document).ready(function () {
                 $('.modal-body label:nth-child(2)').text($(this).find('.card-text').text());
                 $('.modal-footer button').text('Iniciar ' + $(this).find('.card-title').text());
                 $('.modal-footer button').attr('interativo', $(this).attr('id'));
+     
             });
-    
+
             $('#buttonModal').click(function () {
                 window.location.href = `HTML/${$(this).attr('interativo')}.html?unidade=${unidade}`;
             });
@@ -81,6 +82,7 @@ $(document).ready(function () {
         $('#buttonModal').click(function () {
             window.location.href = `HTML/${$(this).attr('interativo')}.html?unidade=${unidade}`;
         });
+
     });
 })
 // * Alterna entre dark e light mode
@@ -99,7 +101,7 @@ function carregaConteudo(unidade) {
         $('#topico').load('/dados_unidade/unidade' + unidade + '.html #unidade_topicos', function () {
             $('#interativo').load('/dados_unidade/unidade' + unidade + '.html #unidade_interativo', function () {
                 $('#conteudo').load('/dados_unidade/unidade' + unidade + '.html #unidade_conteudo', function () {
-                    resolve(); 
+                    resolve();
                 });
             });
         });
