@@ -43,14 +43,23 @@ aside[data-bs-theme="dark"] a:hover {
 .card {
   min-height: 8em;
   transition: all 0.3s, border 0s;
-  background: linear-gradient(180deg, var(--primary-color) 0%, var(--secondary-color) 100%) !important;
+  background: linear-gradient(225deg, var(--primary-color) 0%, var(--secondary-color) 100%) !important;
   color: #fff;
   font-weight: 900;
 }
 
+/*.card:nth-child(2) {
+  filter: hue-rotate(90deg);
+}
+.card:nth-child(3){
+  filter: hue-rotate(180deg);
+}
+.card:nth-child(4) {
+  filter: hue-rotate(270deg);
+}*/
+
 .card:hover {
-  background: linear-gradient(180deg, var(--primary-color) 0%, var(--secondary-color) 60%) !important;
-  color: #fff;
+  background: linear-gradient(225deg, var(--primary-color) 0%, var(--secondary-color) 60%) !important;
 }
 
 .card:hover, .logo:hover, .funcional:hover {

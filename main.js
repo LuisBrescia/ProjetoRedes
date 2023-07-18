@@ -19,28 +19,11 @@ $(document).ready(function () {
         unidade = $(this).val()
         console.log(unidade)
         localStorage.setItem('unidade', unidade);
-
+        
         carregaConteudo(unidade).then(function () {
-            if (tema == 'dark') {
-                console.log('tema dark')
-                $('.card').toggleClass('bg-dark bg-white text-white text-dark');
-                $('.card').attr('data-bs-theme', 'dark');
-            }
-            $('.conteudo, .card').removeClass('d-none');
-            $('.card').click(function () {
-                console.log("titulo", $(this).find('.card-title').text());
-                $('.modal-title').text($(this).find('.card-title').text() + ' Unidade ' + unidade);
-                $('.modal-body h1').text('Deseja iniciar ' + $(this).find('.card-title').text() + '?');
-                $('.modal-body label:nth-child(1)').text('Tempo estimado: ' + Math.floor(Math.random() * 60) + ' minutos');
-                $('.modal-body label:nth-child(2)').text($(this).find('.card-text').text());
-                $('.modal-footer button').text('Iniciar ' + $(this).find('.card-title').text());
-                $('.modal-footer button').attr('interativo', $(this).attr('id'));
-     
-            });
-
-            $('#buttonModal').click(function () {
-                window.location.href = `HTML/${$(this).attr('interativo')}.html?unidade=${unidade}`;
-            });
+            console.log('Conteúdo carregado com sucesso!');
+        }).catch(function (error) {
+            console.error('Erro ao carregar o conteúdo:', error);
         });
     })
 
@@ -60,29 +43,9 @@ $(document).ready(function () {
     })
 
     carregaConteudo(unidade).then(function () {
-
-        if (tema == 'dark') {
-            console.log('tema dark')
-            $('.card').toggleClass('bg-dark bg-white text-white text-dark');
-            $('.card').attr('data-bs-theme', 'dark');
-        }
-
-        $('.conteudo').removeClass('d-none');
-        $('.conteudo, .card').removeClass('d-none');
-        $('.card').click(function () {
-            console.log("titulo", $(this).find('.card-title').text());
-            $('.modal-title').text($(this).find('.card-title').text() + ' Unidade ' + unidade);
-            // $('.modal-body h1').text('Deseja iniciar ' + $(this).find('.card-title').text() + '?');
-            $('.modal-body label:nth-child(1)').text('Tempo estimado: ' + Math.floor(Math.random() * 60) + ' minutos');
-            $('.modal-body label:nth-child(2)').text($(this).find('.card-text').text());
-            $('.modal-footer button').text('Iniciar ' + $(this).find('.card-title').text());
-            $('.modal-footer button').attr('interativo', $(this).attr('id'));
-        });
-
-        $('#buttonModal').click(function () {
-            window.location.href = `HTML/${$(this).attr('interativo')}.html?unidade=${unidade}`;
-        });
-
+        console.log('Conteúdo carregado com sucesso!');
+    }).catch(function (error) {
+        console.error('Erro ao carregar o conteúdo:', error);
     });
 })
 // * Alterna entre dark e light mode
@@ -101,6 +64,30 @@ function carregaConteudo(unidade) {
         $('#topico').load('/dados_unidade/unidade' + unidade + '.html #unidade_topicos', function () {
             $('#interativo').load('/dados_unidade/unidade' + unidade + '.html #unidade_interativo', function () {
                 $('#conteudo').load('/dados_unidade/unidade' + unidade + '.html #unidade_conteudo', function () {
+
+                    if (tema == 'dark') {
+                        console.log('tema dark')
+                        $('.card').toggleClass('bg-dark bg-white text-white text-dark');
+                        $('.card').attr('data-bs-theme', 'dark');
+                    }
+
+                    $('.conteudo').removeClass('d-none');
+                    $('.conteudo, .card').removeClass('d-none');
+                    $('.card').click(function () {
+                        console.log("titulo", $(this).find('.card-title').text());
+                        $('.modal-title').text($(this).find('.card-title').text() + ' Unidade ' + unidade);
+                        // $('.modal-body h1').text('Deseja iniciar ' + $(this).find('.card-title').text() + '?');
+                        $('.modal-body label:nth-child(1)').text('Tempo estimado: ' + Math.floor(Math.random() * 60) + ' minutos');
+                        $('.modal-body label:nth-child(2)').text($(this).find('.card-text').text());
+                        $('.modal-footer button').text('Iniciar ' + $(this).find('.card-title').text());
+                        $('.modal-footer button').attr('interativo', $(this).attr('id'));
+                    });
+
+                    $('#buttonModal').click(function () {
+                        localStorage.setItem('numero_questao', 1);
+                        window.location.href = `HTML/${$(this).attr('interativo')}.html?unidade=${unidade}`;
+                    });
+
                     resolve();
                 });
             });
