@@ -62,7 +62,7 @@ aside[data-bs-theme="dark"] a:hover {
   background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 60%) !important;
 }
 
-.card:hover, .logo:hover, .funcional:hover {
+.logo:hover, .funcional:hover {
   border-color: var(--primary-color) !important;
   cursor: pointer;
 }
@@ -145,7 +145,7 @@ button, input, textarea, select, option, label {
   color: var(--primary-color);
 }
 
-.vl {
+.vertical-line {
   height: 30px;
 }
 
