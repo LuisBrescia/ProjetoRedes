@@ -70,7 +70,7 @@ aside[data-bs-theme="dark"] a:hover {
 #seletorQuestoes button.active {
   color: #fff;
   background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%) !important;
-  box-shadow: 0 0 0 2px var(--escuro), 0 0 0 4px var(--primary-color) !important;
+  box-shadow: 0 0 0 2px var(--primary-color) !important;
 }
 
 /* ? Estilização de componentes */
