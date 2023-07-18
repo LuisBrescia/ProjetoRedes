@@ -17,9 +17,9 @@ $(document).ready(function () {
     // * Função que define a unidade a ser estudada
     $('[name="unidade"]').change(function () {
         unidade = $(this).val()
-        console.log(unidade)
+        console.log("Alterado para unidade",unidade)
         localStorage.setItem('unidade', unidade);
-        
+
         carregaConteudo(unidade).then(function () {
             console.log('Conteúdo carregado com sucesso!');
         }).catch(function (error) {
@@ -29,6 +29,7 @@ $(document).ready(function () {
 
     const toastLiveExample = document.getElementById('liveToast')
     const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+
     $('#enviaQuestionario').click(function () {
         $('.toast-body').text('Indisponível no momento...');
         toastBootstrap.show()
@@ -71,7 +72,6 @@ function carregaConteudo(unidade) {
                         $('.card').attr('data-bs-theme', 'dark');
                     }
 
-                    $('.conteudo').removeClass('d-none');
                     $('.conteudo, .card').removeClass('d-none');
                     $('.card').click(function () {
                         console.log("titulo", $(this).find('.card-title').text());
