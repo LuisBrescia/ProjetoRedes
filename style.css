@@ -166,6 +166,10 @@ button, input, textarea, select, option, label {
   #questao_enunciado {
     min-height: 25%;
   }
+  #seletorQuestoes button.active {
+    outline: none !important;
+    box-shadow: 0 0 0 2px var(--escuro), 0 0 0 4px #0df !important;
+  }
 }
 
 .DISABLE-Topography {
