@@ -54,8 +54,8 @@ function alteraTema(tema) {
     $('nav, aside, .modal-content, #liveToast, .toast-header, .card, textarea, button').attr('data-bs-theme', tema);
     $('button').toggleClass('btn-1 btn-2');
     $('nav').toggleClass('bg-white bg-dark');
-    $('.toast-header').toggleClass('text-black bg-light bg-escuro text-white');
-    $('body, .card, .modal-content, #liveToast').toggleClass('bg-dark bg-white text-white text-dark');
+    $('body, .card, .modal-content').toggleClass('bg-dark bg-white text-white text-dark');
+    $('#liveToast').toggleClass('bg-escuro bg-light text-white text-dark');
     $('.modal-header button, .toast-header button').toggleClass('btn-1 btn-2 btn-close-white');
     $('.modal-header, .modal-footer').toggleClass('border-secondary');
 }

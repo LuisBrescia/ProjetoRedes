@@ -28,8 +28,6 @@ $(document).ready(function () {
             return;
         }
 
-        statusQuestao(numero_questao);
-
         // * Carrega número, enunciado, e resposta da questão, caso já tenha sido respondida
         $('#questao_numero').text($(this).data('value'));
         $('#questao_enunciado').load(`../dados_questionario/questionario${numero_questionario}.html [data-value="${$(this).data('value')}"]`);
@@ -51,7 +49,7 @@ $(document).ready(function () {
         statusQuestao(numero_questao);
 
         // Se existir 10 valores diferentes de '', remover classe disabled do botão de envio
-        if (questionario_respostas.filter(function (el) { return el.trim() != ''; }).length == 9) {
+        if (questionario_respostas.filter(function (el) { return el.trim() != ''; }).length >= 9) {
             $('#enviaQuestionario').removeClass('disabled');
             $('#enviaQuestionario').addClass('btn-default');
         } else {
@@ -92,15 +90,6 @@ $(document).ready(function () {
     });
 })
 
-// * Carrega tópicos, cards, e conteúdo de uma unidade
-function carregaQuestoes(numero_questionario) {
-    // return new Promise(function (resolve, reject) {
-    //     $('#questionario_perguntas').load(`../dados_questionario/questionario ${numero_questionario}.html #questionario${numero_questionario}_topicos`, function () {
-    //         resolve();
-    //     });
-    // });
-    $('#questionario_perguntas').load(`../dados_questionario/questionario${numero_questionario}.html #questionario_perguntas`);
-}
 // * Função que define a cor do botão de acordo com o status da resposta
 function statusQuestao(numero_questao) {
     if ($('#questao_resposta').val().trim() != '') {
@@ -112,10 +101,6 @@ function statusQuestao(numero_questao) {
         });
     } else {
         console.log('Questão ' + (numero_questao) + ' sem resposta');
-        $(`#seletorQuestoes [data-value='${numero_questao}']`).css({
-            'filter': 'hue-rotate(145deg)',
-            'color': '#fff',
-            'background': 'linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%)'
-        });
+        $(`#seletorQuestoes [data-value='${numero_questao}']`).removeAttr('style');
     }
 }
