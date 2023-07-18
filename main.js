@@ -31,7 +31,7 @@ $(document).ready(function () {
     const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
 
     $('#enviaQuestionario').click(function () {
-        $('.toast-body').text('Indisponível no momento...');
+        $('.toast-body').text('Carregando...');
         toastBootstrap.show()
     })
 
