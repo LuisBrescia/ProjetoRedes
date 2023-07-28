@@ -68,12 +68,13 @@
             <button class="btn funcional border shadow-sm col" data-value="10">10</button>
           </div>
         </div>
-        <button id="enviaQuestionario" class="btn btn-1 border shadow-sm mt-2 disabled rounded-5 px-3 py-2">Enviar Questionário</button>
+        <button id="enviaQuestionarioANTIGO" class="btn btn-1 border shadow-sm mt-2 rounded-5 px-3 py-2 disabled"
+        data-bs-toggle="modal" data-bs-target="#insere_chave">Enviar Questionário</button>
       </div>
 
     </section>
 
-    <!-- * Modal -->
+    <!-- * Modal para voltar á página inicial -->
     <div class="modal fade" id="modalInterativo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
         <div class="modal-content bg-white text-dark" data-bs-theme="light">
@@ -91,6 +92,29 @@
             <button id="buttonModal" type="button" class="btn btn-1 border shadow-sm rounded-5"
               data-bs-dismiss="modal">Cancelar</button>
             <button id="fechaAtividade" type="button" class="btn btn-default shadow-sm rounded-5">Confirmar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- * Modal para inserir apikey -->
+    <div class="modal fade" id="insere_chave" tabindex="-1" aria-labelledby="insere_chave_label" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+        <div class="modal-content bg-white text-dark" data-bs-theme="light">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5 fw-bold" id="insere_chave_label">Insira sua API_KEY</h1>
+            <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"
+              data-bs-theme="light"></button>
+          </div>
+          <div class="modal-body px-0">
+            <div class="container-fluid">
+              <input type="text" class="form-control shadow-sm" id="API_KEY">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button id="buttonModal" type="button" class="btn btn-1 border shadow-sm rounded-5"
+              data-bs-dismiss="modal">Cancelar</button>
+            <button id="enviaQuestionario" type="button" class="btn btn-default shadow-sm rounded-5">Confirmar</button>
           </div>
         </div>
       </div>

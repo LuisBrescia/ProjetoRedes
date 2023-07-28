@@ -85,6 +85,7 @@ function carregaConteudo(unidade) {
 
                     $('#buttonModal').click(function () {
                         localStorage.setItem('numero_questao', 1);
+                        localStorage.setItem('questionario_respostas', JSON.stringify(new Array(10).fill('')));
                         window.location.href = `HTML/${$(this).attr('interativo')}.html?unidade=${unidade}`;
                     });
 

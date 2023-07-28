@@ -2,24 +2,47 @@
 
 import $ from 'jquery/dist/jquery.min.js'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
-// import * as bootstrap from 'bootstrap';
-import axios from 'axios';
+import axios from 'axios'
 
 var url_string = window.location.href;
 var url = new URL(url_string);
-var numero_questionario = url.searchParams.get("unidade") || 1;
+var numero_questionario = url.searchParams.get('unidade') || 1;
 var numero_questao = localStorage.getItem('numero_questao') || 1;
 
-var questionario_respostas = []; // * Armazena as respostas do questionário
+// : O problema é que está salvando como uma string gigante, e não como um array
+var questionario_respostas = JSON.parse(localStorage.getItem('questionario_respostas')) || new Array(10).fill(''); // * Armazena as respostas do questionário
 
-const apiKey = 'SUA_CHAVE_DE_API'; // * Chave de API da OpenAi
+const apiKey = localStorage.getItem('API_KEY') || ''; // * API KEY da OpenAi
 const prompt = 'Olá GPT'; // * Aqui será onde conversaremos com o gpt-3
 
 $(document).ready(function () {
+
     $('#questao_numero').text(numero_questao);
     $('#questao_enunciado').load(`../dados_questionario/questionario${numero_questionario}.html [data-value='${numero_questao}']`);
     $('#seletorQuestoes button').removeClass('active');
     $(`#seletorQuestoes [data-value='${numero_questao}']`).addClass('active');
+    $('#questao_resposta').val(questionario_respostas[$('#questao_numero').text() - 1]);
+    $('#API_KEY').val(apiKey);
+
+    // : Ao carregar a página criarei um looping no vetor de respostas, se a resposta em questão não estiver vazia, então a questão será marcada de verde
+
+    for (let i = 0; i < questionario_respostas.length; i++) {
+        if (questionario_respostas[i].trim() != '') {
+            $(`#seletorQuestoes [data-value='${i + 1}']`).css({
+                'filter': 'hue-rotate(270deg)',
+                'color': '#fff',
+                'background': 'linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%)'
+            });
+        }
+    }
+
+    if (questionario_respostas.filter(function (el) { return el.trim() != ''; }).length >= 9) {
+        $('#enviaQuestionarioANTIGO').removeClass('disabled');
+        $('#enviaQuestionarioANTIGO').addClass('btn-default');
+    } else {
+        $('#enviaQuestionarioANTIGO').addClass('disabled');
+        $('#enviaQuestionarioANTIGO').removeClass('btn-default');
+    }
 
     $('#seletorQuestoes button').click(function () {
 
@@ -28,7 +51,7 @@ $(document).ready(function () {
             return;
         }
 
-        // * Carrega número, enunciado, e resposta da questão, caso já tenha sido respondida
+        // * Carrega número, enunciado, e resposta da questão
         $('#questao_numero').text($(this).data('value'));
         $('#questao_enunciado').load(`../dados_questionario/questionario${numero_questionario}.html [data-value="${$(this).data('value')}"]`);
         $('#questao_resposta').val(questionario_respostas[$('#questao_numero').text() - 1]);
@@ -41,27 +64,27 @@ $(document).ready(function () {
         numero_questao = $(this).data('value');
     });
 
-    // Caso o conteúdo da text area seja alterado 
     $('#questao_resposta').change(function () {
-
         console.log('resposta alterada');
-
         statusQuestao(numero_questao);
 
-        // Se existir 10 valores diferentes de '', remover classe disabled do botão de envio
+        // * Caso todas as questões tenham sido respondidas, o botão de enviar será habilitado
         if (questionario_respostas.filter(function (el) { return el.trim() != ''; }).length >= 9) {
-            $('#enviaQuestionario').removeClass('disabled');
-            $('#enviaQuestionario').addClass('btn-default');
+            $('#enviaQuestionarioANTIGO').removeClass('disabled');
+            $('#enviaQuestionarioANTIGO').addClass('btn-default');
         } else {
-            $('#enviaQuestionario').addClass('disabled');
-            $('#enviaQuestionario').removeClass('btn-default');
+            $('#enviaQuestionarioANTIGO').addClass('disabled');
+            $('#enviaQuestionarioANTIGO').removeClass('btn-default');
         }
-
-        // Caso a questão já tenha sido respondida, aplicarei uma propriedade css ao botão em que o valor é o mesmo de numero_questao
-
         questionario_respostas[$('#questao_numero').text() - 1] = $('#questao_resposta').val();
-        localStorage.setItem('questionario_respostas', questionario_respostas);
+        localStorage.setItem('questionario_respostas', JSON.stringify(questionario_respostas));
     });
+
+    $('#API_KEY').change(function () {
+        console.log('API KEY alterada');
+        localStorage.setItem('API_KEY', $(this).val());
+    });
+
     $('#enviaQuestionario').click(function () {
 
         // : Como imagino que vai funcionar 
@@ -90,7 +113,7 @@ $(document).ready(function () {
     });
 })
 
-// * Função que define a cor do botão de acordo com o status da resposta
+// * Caso tenha um conteúdo naquela text area, a questão será marcada de verde
 function statusQuestao(numero_questao) {
     if ($('#questao_resposta').val().trim() != '') {
         console.log('Questão ' + (numero_questao) + ' respondida');
