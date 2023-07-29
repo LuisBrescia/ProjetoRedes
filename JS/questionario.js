@@ -11,9 +11,40 @@ var numero_questao = localStorage.getItem('numero_questao') || 1;
 
 // : O problema é que está salvando como uma string gigante, e não como um array
 var questionario_respostas = JSON.parse(localStorage.getItem('questionario_respostas')) || new Array(10).fill(''); // * Armazena as respostas do questionário
+var vetor_questoes = JSON.parse(localStorage.getItem('vetor_questoes')) || []; // * Armazena as questões que serão carregadas
 
 const apiKey = localStorage.getItem('API_KEY') || ''; // * API KEY da OpenAi
 const prompt = 'Olá GPT'; // * Aqui será onde conversaremos com o gpt-3
+
+// * Cria um vetor com 10 valores aleatórios único de 1 até a quantidade de elementos no questionário
+$.ajax({
+    url: `../dados_questionario/questionario${numero_questionario}.html`,
+    method: 'GET',
+    dataType: 'html',
+    success: function (data) {
+        // Converter o HTML carregado para um objeto jQuery
+        const $html = $(data);
+
+        // Obter a quantidade de elementos <span>
+        const total_perguntas = $html.find('span').length;
+        console.log(`Quantidade de elementos <span>: ${total_perguntas}`);
+
+        // Se o total de elementos for menor que 10, não é possível gerar 10 valores únicos
+        if (total_perguntas < 10) {
+            console.error('Não é possível gerar 10 valores únicos');
+            return;
+        }
+
+        while (vetor_questoes.length < 10) {   
+            var r = Math.floor(Math.random() * total_perguntas) + 1;
+            if (vetor_questoes.indexOf(r) === -1) vetor_questoes.push(r); // * Caso o valor não exista, ele é inserido no vetor
+        }
+        console.log(vetor_questoes);
+    },
+    error: function (error) {
+        console.error('Erro ao carregar o arquivo HTML:', error);
+    }
+});
 
 $(document).ready(function () {
 
@@ -51,9 +82,10 @@ $(document).ready(function () {
             return;
         }
 
+        console.log('vetor_questoes', vetor_questoes);
         // * Carrega número, enunciado, e resposta da questão
         $('#questao_numero').text($(this).data('value'));
-        $('#questao_enunciado').load(`../dados_questionario/questionario${numero_questionario}.html [data-value="${$(this).data('value')}"]`);
+        $('#questao_enunciado').load(`../dados_questionario/questionario${numero_questionario}.html [data-value="${vetor_questoes[$(this).data('value') - 1]}"]`);
         $('#questao_resposta').val(questionario_respostas[$('#questao_numero').text() - 1]);
 
         $('#seletorQuestoes button').removeClass('active');
@@ -127,3 +159,6 @@ function statusQuestao(numero_questao) {
         $(`#seletorQuestoes [data-value='${numero_questao}']`).removeAttr('style');
     }
 }
+
+// : Criar um vetor com 10 números aleatórios de 1 até a quantidade de elementos no questionário,
+// : Quando clico em um botão, pego apenas a posição x do vetor, e carrego a questão em que o valor é o mesmo que o número guardado na posição x do vetor
