@@ -12,9 +12,10 @@ var numero_questao = localStorage.getItem('numero_questao') || 1;
 // : O problema é que está salvando como uma string gigante, e não como um array
 var questionario_respostas = JSON.parse(localStorage.getItem('questionario_respostas')) || new Array(10).fill(''); // * Armazena as respostas do questionário
 var vetor_questoes = JSON.parse(localStorage.getItem('vetor_questoes')) || []; // * Armazena as questões que serão carregadas
+var perguntas_questionario = []; // * Armazena as perguntas do questionário
 
 const apiKey = localStorage.getItem('API_KEY') || ''; // * API KEY da OpenAi
-const prompt = 'Olá GPT'; // * Aqui será onde conversaremos com o gpt-3
+// const prompt = 'Olá GPT'; // * Aqui será onde conversaremos com o gpt-3
 
 // * Cria um vetor com 10 valores aleatórios único de 1 até a quantidade de elementos no questionário
 $.ajax({
@@ -22,14 +23,24 @@ $.ajax({
     method: 'GET',
     dataType: 'html',
     success: function (data) {
-        // Converter o HTML carregado para um objeto jQuery
-        const $html = $(data);
 
-        // Obter a quantidade de elementos <span>
+        console.log(vetor_questoes);
+
+        const $html = $(data); // * Transforma o HTML em um objeto jQuery
+
+        $html.find('span').each(function () {
+            perguntas_questionario.push($(this).text());
+        });
+
+        console.log(perguntas_questionario);
+
+        if (vetor_questoes.length == 10) {
+            console.log('Vetor de questões já carregado');
+            return;
+        }
+
         const total_perguntas = $html.find('span').length;
-        console.log(`Quantidade de elementos <span>: ${total_perguntas}`);
 
-        // Se o total de elementos for menor que 10, não é possível gerar 10 valores únicos
         if (total_perguntas < 10) {
             console.error('Não é possível gerar 10 valores únicos');
             return;
@@ -39,7 +50,7 @@ $.ajax({
             var r = Math.floor(Math.random() * total_perguntas) + 1;
             if (vetor_questoes.indexOf(r) === -1) vetor_questoes.push(r); // * Caso o valor não exista, ele é inserido no vetor
         }
-        console.log(vetor_questoes);
+        localStorage.setItem('vetor_questoes', JSON.stringify(vetor_questoes));
     },
     error: function (error) {
         console.error('Erro ao carregar o arquivo HTML:', error);
@@ -117,6 +128,7 @@ $(document).ready(function () {
         localStorage.setItem('API_KEY', $(this).val());
     });
 
+    // * Botão de enviar o questionário
     $('#enviaQuestionario').click(function () {
 
         // : Como imagino que vai funcionar 
@@ -124,24 +136,36 @@ $(document).ready(function () {
         // Mandarei cada pergunta e sua respectiva resposta para a API da OpenAi
         // A API avaliará a resposta e retornará uma nota de 0 a 10, e irar colocar elas em um vetor
 
+        // * Primeiramente, criarei uma string gigante com todas as perguntas e respostas
+        var prompt = '';
+
+        for (let i = 0; i < questionario_respostas.length; i++) {
+            prompt += `PERGUNTA:\n\n${perguntas_questionario[vetor_questoes[i] - 1]}\n\nRESPOSTA:\n\n${questionario_respostas[i]}\n\n`;
+        }
+
+        prompt += `Avalie com uma nota de 0 a 10 e corrija caso haja erros`;
+        console.log(prompt);
+
         // * Chamando a API
-        axios.post('https://api.openai.com/v1/engines/davinci-codex/completions', {
-            prompt: prompt,
-            max_tokens: 100,
-            temperature: 0.7,
-        }, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${apiKey}`,
-            },
-        }).then(response => {
-            const completion = response.data.choices[0].text;
-            console.log(completion);
-        }).catch(error => {
-            console.error('Erro na chamada da API:', error);
-            $('.toast-body').text('API KEY Inválida');
-            toastBootstrap.show()
-        });
+        // axios.post('https://api.openai.com/v1/engines/davinci-codex/completions', {
+        //     prompt: prompt,
+        //     max_tokens: 100,
+        //     temperature: 0.7,
+        // }, {
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'Authorization': `Bearer ${apiKey}`,
+        //     },
+        // }).then(response => {
+        //     const completion = response.data.choices[0].text;
+        //     console.log(completion);
+        //     $('.toast-body').text('API KEY Válida');
+        //     toastBootstrap.show()
+        // }).catch(error => {
+        //     console.error('Erro na chamada da API:', error);
+        //     $('.toast-body').text('API KEY Inválida');
+        //     toastBootstrap.show()
+        // });
     });
 })
 
@@ -159,6 +183,3 @@ function statusQuestao(numero_questao) {
         $(`#seletorQuestoes [data-value='${numero_questao}']`).removeAttr('style');
     }
 }
-
-// : Criar um vetor com 10 números aleatórios de 1 até a quantidade de elementos no questionário,
-// : Quando clico em um botão, pego apenas a posição x do vetor, e carrego a questão em que o valor é o mesmo que o número guardado na posição x do vetor
