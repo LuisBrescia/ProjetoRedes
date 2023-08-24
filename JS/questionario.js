@@ -2,7 +2,23 @@
 
 import $ from 'jquery/dist/jquery.min.js'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
-import axios from 'axios'
+
+import { Configuration, OpenAIApi } from 'openai';
+
+const openai = new OpenAIApi( 
+    new Configuration({
+        apiKey: import.meta.env.VITE_API_KEY
+    })
+);
+
+openai.createChatCompletion({
+    model: 'davinci',
+    messages: [{ role: "user", content: "Olá ChatGPT" }],
+}).then(response => {
+    console.log(response);
+}).catch(error => {
+    console.error(error);
+});
 
 var url_string = window.location.href;
 var url = new URL(url_string);
@@ -14,8 +30,7 @@ var questionario_respostas = JSON.parse(localStorage.getItem('questionario_respo
 var vetor_questoes = JSON.parse(localStorage.getItem('vetor_questoes')) || []; // * Armazena as questões que serão carregadas
 var perguntas_questionario = []; // * Armazena as perguntas do questionário
 
-const apiKey = localStorage.getItem('API_KEY') || ''; // * API KEY da OpenAi
-// const prompt = 'Olá GPT'; // * Aqui será onde conversaremos com o gpt-3
+console.log(import.meta.env.VITE_API_KEY);
 
 // * Cria um vetor com 10 valores aleatórios único de 1 até a quantidade de elementos no questionário
 $.ajax({
@@ -64,7 +79,7 @@ $(document).ready(function () {
     $('#seletorQuestoes button').removeClass('active');
     $(`#seletorQuestoes [data-value='${numero_questao}']`).addClass('active');
     $('#questao_resposta').val(questionario_respostas[$('#questao_numero').text() - 1]);
-    $('#API_KEY').val(apiKey);
+    // $('#API_KEY').val(apiKey);
 
     // : Ao carregar a página criarei um looping no vetor de respostas, se a resposta em questão não estiver vazia, então a questão será marcada de verde
 
@@ -79,11 +94,11 @@ $(document).ready(function () {
     }
 
     if (questionario_respostas.filter(function (el) { return el.trim() != ''; }).length >= 9) {
-        $('#enviaQuestionarioANTIGO').removeClass('disabled');
-        $('#enviaQuestionarioANTIGO').addClass('btn-default');
+        $('#enviaQuestionario').removeClass('disabled');
+        $('#enviaQuestionario').addClass('btn-default');
     } else {
-        $('#enviaQuestionarioANTIGO').addClass('disabled');
-        $('#enviaQuestionarioANTIGO').removeClass('btn-default');
+        $('#enviaQuestionario').addClass('disabled');
+        $('#enviaQuestionario').removeClass('btn-default');
     }
 
     $('#seletorQuestoes button').click(function () {
@@ -113,20 +128,20 @@ $(document).ready(function () {
 
         // * Caso todas as questões tenham sido respondidas, o botão de enviar será habilitado
         if (questionario_respostas.filter(function (el) { return el.trim() != ''; }).length >= 9) {
-            $('#enviaQuestionarioANTIGO').removeClass('disabled');
-            $('#enviaQuestionarioANTIGO').addClass('btn-default');
+            $('#enviaQuestionario').removeClass('disabled');
+            $('#enviaQuestionario').addClass('btn-default');
         } else {
-            $('#enviaQuestionarioANTIGO').addClass('disabled');
-            $('#enviaQuestionarioANTIGO').removeClass('btn-default');
+            $('#enviaQuestionario').addClass('disabled');
+            $('#enviaQuestionario').removeClass('btn-default');
         }
         questionario_respostas[$('#questao_numero').text() - 1] = $('#questao_resposta').val();
         localStorage.setItem('questionario_respostas', JSON.stringify(questionario_respostas));
     });
 
-    $('#API_KEY').change(function () {
-        console.log('API KEY alterada');
-        localStorage.setItem('API_KEY', $(this).val());
-    });
+    // $('#API_KEY').change(function () {
+    //     console.log('API KEY alterada');
+    //     localStorage.setItem('API_KEY', $(this).val());
+    // });
 
     // * Botão de enviar o questionário
     $('#enviaQuestionario').click(function () {
@@ -136,15 +151,18 @@ $(document).ready(function () {
         // Mandarei cada pergunta e sua respectiva resposta para a API da OpenAi
         // A API avaliará a resposta e retornará uma nota de 0 a 10, e irar colocar elas em um vetor
 
-        // * Primeiramente, criarei uma string gigante com todas as perguntas e respostas
-        var prompt = '';
+        // * Prompt será um vetor que contém 10 strings, cada uma com uma pergunta e sua respectiva resposta
+        var prompt = [];
 
         for (let i = 0; i < questionario_respostas.length; i++) {
-            prompt += `PERGUNTA:\n\n${perguntas_questionario[vetor_questoes[i] - 1]}\n\nRESPOSTA:\n\n${questionario_respostas[i]}\n\n`;
+            prompt[i] = 
+            `PERGUNTA:\n\n` +
+            `${perguntas_questionario[vetor_questoes[i] - 1]}\n\n` +
+            `RESPOSTA:\n\n${questionario_respostas[i]}\n\n` +
+            `Avalie com uma nota de 0 a 10 e corrija caso haja erros\n\n`;
+            console.log(prompt[i]);
         }
 
-        prompt += `Avalie com uma nota de 0 a 10 e corrija caso haja erros`;
-        console.log(prompt);
 
         // * Chamando a API
         // axios.post('https://api.openai.com/v1/engines/davinci-codex/completions', {
