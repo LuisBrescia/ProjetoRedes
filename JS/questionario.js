@@ -76,6 +76,20 @@ $(document).ready(function () {
         }
     }
 
+    if ($('#questao_resposta').val() !== '') {
+        $('#questaoUnica').removeClass('disabled').addClass('btn-default');
+    } else {
+        $('#questaoUnica').addClass('disabled').removeClass('btn-default');
+    }
+    
+    $('#questao_resposta').on('input', function() {
+        if ($(this).val() !== '') {
+            $('#questaoUnica').removeClass('disabled').addClass('btn-default');
+        } else {
+            $('#questaoUnica').addClass('disabled').removeClass('btn-default');
+        }
+    });
+
     if (questionario_respostas.filter(function (el) { return el.trim() != ''; }).length >= 9) {
         $('#enviaQuestionario').removeClass('disabled');
         $('#enviaQuestionario').addClass('btn-default');
@@ -126,6 +140,48 @@ $(document).ready(function () {
     //     localStorage.setItem('API_KEY', $(this).val());
     // });
 
+    // * Botão para enviar uma questão só
+    $('#questaoUnica').click(async function () {
+
+        let enunciado = $('#questao_enunciado').val();
+        let resposta = $('#questao_resposta').val();
+
+        var prompt =
+        `PERGUNTA:\n\n` +
+        `${enunciado}\n\n` +
+        `RESPOSTA:\n\n${resposta}\n\n` +
+        `Avalie com uma nota de 0 a 10 e corrija caso haja erros\n\n`;
+
+        try {
+            const openai = new OpenAI({
+                apiKey: apiKey,
+                dangerouslyAllowBrowser: true
+            });
+
+            // const chatResponses = await Promise.all(
+            //     vetor_prompts.map(async (prompt) => {
+            //         const chatCompletion = await openai.chat.completions.create({
+            //             model: "gpt-3.5-turbo",
+            //             messages: [{ "role": "user", "content": prompt }],
+            //         });
+            //         return chatCompletion.choices[0].message;
+            //     })
+            // );
+            // console.log(chatResponses);
+
+            const chatCompletion = await openai.chat.completions.create({
+                model: "gpt-3.5-turbo",
+                messages: [{ "role": "user", "content": prompt }],
+            });
+            console.log(chatCompletion.choices[0].message);
+            $('#chatBot').val(chatCompletion.choices[0].message.content);
+
+        } catch (error) {
+            console.error("Erro ao criar chat completion:", error);
+        }
+
+    });
+
     // * Botão de enviar o questionário
     $('#enviaQuestionario').click(async function () {
 
@@ -157,7 +213,7 @@ $(document).ready(function () {
 
             const chatCompletion = await openai.chat.completions.create({
                 model: "gpt-3.5-turbo",
-                messages: [{ "role": "user", "content": "Olá chat" }],
+                messages: [{ "role": "user", "content": "Me fala os números da MegaSena" }],
             });
             console.log(chatCompletion.choices[0].message);
 
