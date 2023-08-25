@@ -2,7 +2,8 @@ import $ from 'jquery/dist/jquery.min.js'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import OpenAI from "openai";
 
-const apiKey = import.meta.env.VITE_API_KEY; // * API_KEY da OpenAI
+// const apiKey = import.meta.env.VITE_API_KEY; // * API_KEY da OpenAI
+const apiKey = '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'; // * API_KEY da OpenAI
 
 var url_string = window.location.href;
 var url = new URL(url_string);

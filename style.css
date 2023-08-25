@@ -78,6 +78,10 @@ button, input, textarea, select, option, label {
   transition: border 0s, color 0s, background-color 0s, transform 0.3s !important;
 }
 
+textarea {
+  min-height: 30vh;
+}
+
 .btn-1 {
   background-color: var(--claro);
 }
