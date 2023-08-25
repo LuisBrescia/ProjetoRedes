@@ -1,24 +1,8 @@
-// * Este será o código que carregará as perguntas do questionário
-
 import $ from 'jquery/dist/jquery.min.js'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
+import OpenAI from "openai";
 
-import { Configuration, OpenAIApi } from 'openai';
-
-const openai = new OpenAIApi( 
-    new Configuration({
-        apiKey: import.meta.env.VITE_API_KEY
-    })
-);
-
-openai.createChatCompletion({
-    model: 'davinci',
-    messages: [{ role: "user", content: "Olá ChatGPT" }],
-}).then(response => {
-    console.log(response);
-}).catch(error => {
-    console.error(error);
-});
+const apiKey = import.meta.env.VITE_API_KEY; // * API_KEY da OpenAI
 
 var url_string = window.location.href;
 var url = new URL(url_string);
@@ -29,8 +13,6 @@ var numero_questao = localStorage.getItem('numero_questao') || 1;
 var questionario_respostas = JSON.parse(localStorage.getItem('questionario_respostas')) || new Array(10).fill(''); // * Armazena as respostas do questionário
 var vetor_questoes = JSON.parse(localStorage.getItem('vetor_questoes')) || []; // * Armazena as questões que serão carregadas
 var perguntas_questionario = []; // * Armazena as perguntas do questionário
-
-console.log(import.meta.env.VITE_API_KEY);
 
 // * Cria um vetor com 10 valores aleatórios único de 1 até a quantidade de elementos no questionário
 $.ajax({
@@ -61,7 +43,7 @@ $.ajax({
             return;
         }
 
-        while (vetor_questoes.length < 10) {   
+        while (vetor_questoes.length < 10) {
             var r = Math.floor(Math.random() * total_perguntas) + 1;
             if (vetor_questoes.indexOf(r) === -1) vetor_questoes.push(r); // * Caso o valor não exista, ele é inserido no vetor
         }
@@ -71,6 +53,16 @@ $.ajax({
         console.error('Erro ao carregar o arquivo HTML:', error);
     }
 });
+
+const openai = new OpenAI({
+    apiKey: apiKey,
+    dangerouslyAllowBrowser : true
+});
+const chatCompletion = await openai.chat.completions.create({
+    model: "gpt-3.5-turbo",
+    messages: [{ "role": "user", "content": "Hello!" }],
+});
+console.log(chatCompletion.choices[0].message);
 
 $(document).ready(function () {
 
@@ -146,44 +138,18 @@ $(document).ready(function () {
     // * Botão de enviar o questionário
     $('#enviaQuestionario').click(function () {
 
-        // : Como imagino que vai funcionar 
-
-        // Mandarei cada pergunta e sua respectiva resposta para a API da OpenAi
-        // A API avaliará a resposta e retornará uma nota de 0 a 10, e irar colocar elas em um vetor
-
-        // * Prompt será um vetor que contém 10 strings, cada uma com uma pergunta e sua respectiva resposta
-        var prompt = [];
+        var vetor_prompts = []; // * Cada prompt é uma entrada para o chatbot
 
         for (let i = 0; i < questionario_respostas.length; i++) {
-            prompt[i] = 
-            `PERGUNTA:\n\n` +
-            `${perguntas_questionario[vetor_questoes[i] - 1]}\n\n` +
-            `RESPOSTA:\n\n${questionario_respostas[i]}\n\n` +
-            `Avalie com uma nota de 0 a 10 e corrija caso haja erros\n\n`;
-            console.log(prompt[i]);
+            vetor_prompts[i] =
+                `PERGUNTA:\n\n` +
+                `${perguntas_questionario[vetor_questoes[i] - 1]}\n\n` +
+                `RESPOSTA:\n\n${questionario_respostas[i]}\n\n` +
+                `Avalie com uma nota de 0 a 10 e corrija caso haja erros\n\n`;
+            console.log(vetor_prompts[i]);
         }
 
 
-        // * Chamando a API
-        // axios.post('https://api.openai.com/v1/engines/davinci-codex/completions', {
-        //     prompt: prompt,
-        //     max_tokens: 100,
-        //     temperature: 0.7,
-        // }, {
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         'Authorization': `Bearer ${apiKey}`,
-        //     },
-        // }).then(response => {
-        //     const completion = response.data.choices[0].text;
-        //     console.log(completion);
-        //     $('.toast-body').text('API KEY Válida');
-        //     toastBootstrap.show()
-        // }).catch(error => {
-        //     console.error('Erro na chamada da API:', error);
-        //     $('.toast-body').text('API KEY Inválida');
-        //     toastBootstrap.show()
-        // });
     });
 })
 
