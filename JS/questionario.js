@@ -13,6 +13,7 @@ var numero_questao = localStorage.getItem('numero_questao') || 1;
 var questionario_respostas = JSON.parse(localStorage.getItem('questionario_respostas')) || new Array(10).fill(''); // * Armazena as respostas do questionário
 var vetor_questoes = JSON.parse(localStorage.getItem('vetor_questoes')) || []; // * Armazena as questões que serão carregadas
 var perguntas_questionario = []; // * Armazena as perguntas do questionário
+var vetor_prompts = []; // * Cada prompt é uma entrada para o chatbot
 
 // * Cria um vetor com 10 valores aleatórios único de 1 até a quantidade de elementos no questionário
 $.ajax({
@@ -53,16 +54,6 @@ $.ajax({
         console.error('Erro ao carregar o arquivo HTML:', error);
     }
 });
-
-const openai = new OpenAI({
-    apiKey: apiKey,
-    dangerouslyAllowBrowser : true
-});
-const chatCompletion = await openai.chat.completions.create({
-    model: "gpt-3.5-turbo",
-    messages: [{ "role": "user", "content": "Olá chat, como vai?" }],
-});
-console.log(chatCompletion.choices[0].message);
 
 $(document).ready(function () {
 
@@ -136,9 +127,7 @@ $(document).ready(function () {
     // });
 
     // * Botão de enviar o questionário
-    $('#enviaQuestionario').click(function () {
-
-        var vetor_prompts = []; // * Cada prompt é uma entrada para o chatbot
+    $('#enviaQuestionario').click(async function () {
 
         for (let i = 0; i < questionario_respostas.length; i++) {
             vetor_prompts[i] =
@@ -149,6 +138,32 @@ $(document).ready(function () {
             console.log(vetor_prompts[i]);
         }
 
+        try {
+            const openai = new OpenAI({
+                apiKey: apiKey,
+                dangerouslyAllowBrowser: true
+            });
+
+            // const chatResponses = await Promise.all(
+            //     vetor_prompts.map(async (prompt) => {
+            //         const chatCompletion = await openai.chat.completions.create({
+            //             model: "gpt-3.5-turbo",
+            //             messages: [{ "role": "user", "content": prompt }],
+            //         });
+            //         return chatCompletion.choices[0].message;
+            //     })
+            // );
+            // console.log(chatResponses);
+
+            const chatCompletion = await openai.chat.completions.create({
+                model: "gpt-3.5-turbo",
+                messages: [{ "role": "user", "content": "Olá chat" }],
+            });
+            console.log(chatCompletion.choices[0].message);
+
+        } catch (error) {
+            console.error("Erro ao criar chat completion:", error);
+        }
 
     });
 })
