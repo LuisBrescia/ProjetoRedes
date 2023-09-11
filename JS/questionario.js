@@ -22,16 +22,16 @@ var vetor_prompts = []; // * Cada prompt é uma entrada para o chatbot
 // * Cria um vetor com 10 valores aleatórios único de 1 até a quantidade de elementos no questionário
 
 console.log(vetor_questoes);
-if (vetor_questoes.length == 0) {
-    $.ajax({
-        url: `../dados_questionario/questionario${numero_questionario}.html`,
-        method: 'GET',
-        dataType: 'html',
-        success: function (data) {
+if (vetor_questoes.length != 10) {
+    var xhr = new XMLHttpRequest();
+    var url = `../dados_questionario/questionario${numero_questionario}.html`;
+    xhr.open('GET', url, false); // O terceiro parâmetro "false" torna a solicitação síncrona.
+    
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            console.log("Criando valores aleatórios");
 
-            console.log(vetor_questoes);
-
-            const $html = $(data); // * Transforma o HTML em um objeto jQuery
+            const $html = $(xhr.responseText); // Transforma o HTML em um objeto jQuery
 
             $html.find('span').each(function () {
                 perguntas_questionario.push($(this).text());
@@ -48,14 +48,19 @@ if (vetor_questoes.length == 0) {
 
             while (vetor_questoes.length < 10) {
                 var r = Math.floor(Math.random() * total_perguntas) + 1;
-                if (vetor_questoes.indexOf(r) === -1) vetor_questoes.push(r); // * Caso o valor não exista, ele é inserido no vetor
+                if (vetor_questoes.indexOf(r) === -1) vetor_questoes.push(r); // Caso o valor não exista, ele é inserido no vetor
             }
             localStorage.setItem('vetor_questoes', JSON.stringify(vetor_questoes));
-        },
-        error: function (error) {
-            console.error('Erro ao carregar o arquivo HTML:', error);
+        } else {
+            console.error('Erro ao carregar o arquivo HTML:', xhr.status);
         }
-    });
+    };
+
+    xhr.onerror = function () {
+        console.error('Erro ao carregar o arquivo HTML');
+    };
+
+    xhr.send();
 }
 
 
