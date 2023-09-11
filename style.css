@@ -79,7 +79,7 @@ button, input, textarea, select, option, label {
 }
 
 textarea {
-  min-height: 30vh;
+  resize: none;
 }
 
 .btn-1 {
@@ -161,6 +161,10 @@ textarea {
   min-height: 10%;
 }
 
+.scale-pan {
+  animation: scale-pan 1s ease-in-out infinite;
+}
+
 /** Media Querys */
 
 @media screen and (max-width: 576px) {
@@ -169,6 +173,20 @@ textarea {
   } 
   #questao_enunciado {
     min-height: 25%;
+  }
+}
+
+/** Keyframes */
+
+@keyframes scale-pan {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
   }
 }
 

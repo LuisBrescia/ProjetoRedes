@@ -1,9 +1,11 @@
 import $ from 'jquery/dist/jquery.min.js'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
+import * as bootstrap from 'bootstrap';
 import OpenAI from "openai";
 
-// const apiKey = import.meta.env.VITE_API_KEY; // * API_KEY da OpenAI
-const apiKey = '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'; // * API_KEY da OpenAI
+const apiKey = import.meta.env.VITE_API_KEY; // * API_KEY da OpenAI
+
+console.log(apiKey);
 
 var url_string = window.location.href;
 var url = new URL(url_string);
@@ -12,61 +14,64 @@ var numero_questao = localStorage.getItem('numero_questao') || 1;
 
 // : O problema é que está salvando como uma string gigante, e não como um array
 var questionario_respostas = JSON.parse(localStorage.getItem('questionario_respostas')) || new Array(10).fill(''); // * Armazena as respostas do questionário
+var questionario_corrigido = JSON.parse(localStorage.getItem('questionario_corrigido')) || new Array(10).fill(''); // * Armazena as respostas do questionário
 var vetor_questoes = JSON.parse(localStorage.getItem('vetor_questoes')) || []; // * Armazena as questões que serão carregadas
 var perguntas_questionario = []; // * Armazena as perguntas do questionário
 var vetor_prompts = []; // * Cada prompt é uma entrada para o chatbot
 
 // * Cria um vetor com 10 valores aleatórios único de 1 até a quantidade de elementos no questionário
-$.ajax({
-    url: `../dados_questionario/questionario${numero_questionario}.html`,
-    method: 'GET',
-    dataType: 'html',
-    success: function (data) {
 
-        console.log(vetor_questoes);
+console.log(vetor_questoes);
+if (vetor_questoes.length == 0) {
+    $.ajax({
+        url: `../dados_questionario/questionario${numero_questionario}.html`,
+        method: 'GET',
+        dataType: 'html',
+        success: function (data) {
 
-        const $html = $(data); // * Transforma o HTML em um objeto jQuery
+            console.log(vetor_questoes);
 
-        $html.find('span').each(function () {
-            perguntas_questionario.push($(this).text());
-        });
+            const $html = $(data); // * Transforma o HTML em um objeto jQuery
 
-        console.log(perguntas_questionario);
+            $html.find('span').each(function () {
+                perguntas_questionario.push($(this).text());
+            });
 
-        if (vetor_questoes.length == 10) {
-            console.log('Vetor de questões já carregado');
-            return;
+            console.log(perguntas_questionario);
+
+            const total_perguntas = $html.find('span').length;
+
+            if (total_perguntas < 10) {
+                console.error('Não é possível gerar 10 valores únicos');
+                return;
+            }
+
+            while (vetor_questoes.length < 10) {
+                var r = Math.floor(Math.random() * total_perguntas) + 1;
+                if (vetor_questoes.indexOf(r) === -1) vetor_questoes.push(r); // * Caso o valor não exista, ele é inserido no vetor
+            }
+            localStorage.setItem('vetor_questoes', JSON.stringify(vetor_questoes));
+        },
+        error: function (error) {
+            console.error('Erro ao carregar o arquivo HTML:', error);
         }
+    });
+}
 
-        const total_perguntas = $html.find('span').length;
-
-        if (total_perguntas < 10) {
-            console.error('Não é possível gerar 10 valores únicos');
-            return;
-        }
-
-        while (vetor_questoes.length < 10) {
-            var r = Math.floor(Math.random() * total_perguntas) + 1;
-            if (vetor_questoes.indexOf(r) === -1) vetor_questoes.push(r); // * Caso o valor não exista, ele é inserido no vetor
-        }
-        localStorage.setItem('vetor_questoes', JSON.stringify(vetor_questoes));
-    },
-    error: function (error) {
-        console.error('Erro ao carregar o arquivo HTML:', error);
-    }
-});
 
 $(document).ready(function () {
 
+    const toastLiveExample = document.getElementById('liveToast')
+    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+
     $('#questao_numero').text(numero_questao);
-    $('#questao_enunciado').load(`../dados_questionario/questionario${numero_questionario}.html [data-value='${numero_questao}']`);
+    $('#questao_enunciado').load(`../dados_questionario/questionario${numero_questionario}.html [data-value='${vetor_questoes[numero_questao - 1]}']`);
     $('#seletorQuestoes button').removeClass('active');
     $(`#seletorQuestoes [data-value='${numero_questao}']`).addClass('active');
     $('#questao_resposta').val(questionario_respostas[$('#questao_numero').text() - 1]);
-    // $('#API_KEY').val(apiKey);
+    $('#chatBot').val(questionario_corrigido[$('#questao_numero').text() - 1]);
 
-    // : Ao carregar a página criarei um looping no vetor de respostas, se a resposta em questão não estiver vazia, então a questão será marcada de verde
-
+    // : Ao carregar a página criarei um looping no vetor de respostas, se a resposta em questão estiver preenchida, então a questão será marcada de verde
     for (let i = 0; i < questionario_respostas.length; i++) {
         if (questionario_respostas[i].trim() != '') {
             $(`#seletorQuestoes [data-value='${i + 1}']`).css({
@@ -82,8 +87,8 @@ $(document).ready(function () {
     } else {
         $('#questaoUnica').addClass('disabled').removeClass('btn-default');
     }
-    
-    $('#questao_resposta').on('input', function() {
+
+    $('#questao_resposta').on('input', function () {
         if ($(this).val() !== '') {
             $('#questaoUnica').removeClass('disabled').addClass('btn-default');
         } else {
@@ -111,12 +116,18 @@ $(document).ready(function () {
         $('#questao_numero').text($(this).data('value'));
         $('#questao_enunciado').load(`../dados_questionario/questionario${numero_questionario}.html [data-value="${vetor_questoes[$(this).data('value') - 1]}"]`);
         $('#questao_resposta').val(questionario_respostas[$('#questao_numero').text() - 1]);
+        $('#chatBot').val(questionario_corrigido[$('#questao_numero').text() - 1]);
+
+        if ($('#questao_resposta').val() !== '') {
+            $('#questaoUnica').removeClass('disabled').addClass('btn-default');
+        } else {
+            $('#questaoUnica').addClass('disabled').removeClass('btn-default');
+        }
 
         $('#seletorQuestoes button').removeClass('active');
         $(this).addClass('active');
 
         localStorage.setItem('numero_questao', $(this).data('value'));
-
         numero_questao = $(this).data('value');
     });
 
@@ -144,31 +155,22 @@ $(document).ready(function () {
     // * Botão para enviar uma questão só
     $('#questaoUnica').click(async function () {
 
+        $('#questaoUnica').addClass('disabled scale-pan').removeClass('btn-default');
+
         let enunciado = $('#questao_enunciado').val();
         let resposta = $('#questao_resposta').val();
 
         var prompt =
-        `PERGUNTA:\n\n` +
-        `${enunciado}\n\n` +
-        `RESPOSTA:\n\n${resposta}\n\n` +
-        `Avalie com uma nota de 0 a 10 e corrija caso haja erros\n\n`;
+            `PERGUNTA:\n\n${enunciado}\n\n` +
+            `RESPOSTA:\n\n${resposta}\n\n` +
+            `Avalie com uma nota de 0 a 10 o quão boa é a resposta para a pergunta e indique os erros, só repostas completas merecem notas acima de 5.` +
+            `Sua resposta deve começar com "Nota: X". Se a resposta estiver parecida com a pergunta, a nota deverá ser 0.\n\n`;
 
         try {
             const openai = new OpenAI({
                 apiKey: apiKey,
                 dangerouslyAllowBrowser: true
             });
-
-            // const chatResponses = await Promise.all(
-            //     vetor_prompts.map(async (prompt) => {
-            //         const chatCompletion = await openai.chat.completions.create({
-            //             model: "gpt-3.5-turbo",
-            //             messages: [{ "role": "user", "content": prompt }],
-            //         });
-            //         return chatCompletion.choices[0].message;
-            //     })
-            // );
-            // console.log(chatResponses);
 
             const chatCompletion = await openai.chat.completions.create({
                 model: "gpt-3.5-turbo",
@@ -177,10 +179,15 @@ $(document).ready(function () {
             console.log(chatCompletion.choices[0].message);
             $('#chatBot').val(chatCompletion.choices[0].message.content);
 
+            questionario_corrigido[$('#questao_numero').text() - 1] = chatCompletion.choices[0].message.content;
+            localStorage.setItem('questionario_corrigido', JSON.stringify(questionario_corrigido));
         } catch (error) {
+            $('.toast-body').text(error);
+            toastBootstrap.show();
             console.error("Erro ao criar chat completion:", error);
         }
 
+        $('#questaoUnica').removeClass('disabled scale-pan').addClass('btn-default');
     });
 
     // * Botão de enviar o questionário
